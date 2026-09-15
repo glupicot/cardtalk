@@ -1,61 +1,72 @@
-import { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Input } from '../../components/input/input';
-import { authService } from '../../services/auth-service';
-import { useAppDispatch } from '../../store/hooks';
-import { setUser } from '../../store/slices/user-slice';
-import styles from './login-page.module.css';
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { Input } from '../../components/input/input'
+import { authService } from '../../services/auth-service'
+import { useAppDispatch } from '../../store/hooks'
+import { setUser } from '../../store/slices/user-slice'
+import { ROUTES } from '../../constants/routes'
+import styles from './login-page.module.css'
+
+type FormValues = {
+  login: string
+  password: string
+}
 
 const LoginPage = () => {
-	const [login, setLogin] = useState('');
-	const [password, setPassword] = useState('');
-	const [error, setError] = useState('');
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
-	const handleSubmit = async (e: FormEvent) => {
-		e.preventDefault();
-		setError('');
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<FormValues>({
+    defaultValues: { login: '', password: '' },
+  })
 
-		const ok = await authService.login(login, password);
-		if (ok) {
-			dispatch(setUser(login));
-			navigate('/cards');
-		} else {
-			setError('Неверный логин или пароль');
-		}
-	};
+  const onSubmit = async (values: FormValues) => {
+    const ok = await authService.login(values.login, values.password)
 
-	return (
-		<div className={styles.wrapper}>
-			<form className={styles.form} onSubmit={handleSubmit}>
-				<h1 className={styles.title}>CardTalk</h1>
-				<p className={styles.subtitle}>Войдите, чтобы продолжить обучение</p>
+    if (ok) {
+      dispatch(setUser(values.login))
+      navigate(ROUTES.CARDS)
+    } else {
+      setError('password', { message: 'Неверный логин или пароль' })
+    }
+  }
 
-				<div className={styles.fields}>
-					<Input
-						placeholder="Логин"
-						value={login}
-						onChange={(e) => setLogin(e.target.value)}
-					/>
+  return (
+    <div className={styles.wrapper}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <h1 className={styles.title}>CardTalk</h1>
+        <p className={styles.subtitle}>Войдите, чтобы продолжить обучение</p>
 
-					<Input
-						type="password"
-						placeholder="Пароль"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						hasError={!!error}
-					/>
-				</div>
+        <div className={styles.fields}>
+          <Input
+            placeholder="Логин"
+            hasError={!!errors.login}
+            {...register('login', { required: 'Введите логин' })}
+          />
 
-				{error && <p className={styles.error}>{error}</p>}
+          <Input
+            type="password"
+            placeholder="Пароль"
+            hasError={!!errors.password}
+            {...register('password', { required: 'Введите пароль' })}
+          />
+        </div>
 
-				<button className={styles.button} type="submit">
-					Войти
-				</button>
-			</form>
-		</div>
-	);
-};
+        {errors.password && (
+          <p className={styles.error}>{errors.password.message}</p>
+        )}
 
-export default LoginPage;
+        <button className={styles.button} type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Входим...' : 'Войти'}
+        </button>
+      </form>
+    </div>
+  )
+}
+
+export default LoginPage

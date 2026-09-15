@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { store } from './store'
-import { Header } from './components/header/header'
+import { NavPanel } from './components/nav-panel/nav-panel'
 import { Footer } from './components/footer/footer'
 import { Body } from './components/body/body'
 import { ProtectedRoute } from './components/protected-route/protected-route'
@@ -15,10 +15,9 @@ export default function App() {
 	return (
 		<Provider store={store}>
 			<BrowserRouter>
-				<Header
-					links={[
-						{ to: ROUTES.CARDS, label: 'Карточки' },
-						{ to: ROUTES.LOGIN, label: 'Войти' },
+				<NavPanel
+					tabs={[
+						{ id: 'cards', label: 'КАРТОЧКИ', to: ROUTES.CARDS },
 					]}
 				/>
 				<Body>

@@ -1,0 +1,7 @@
+.body {
+	flex: 1;
+	padding: 32px;
+	font-family: var(--font-family-main);
+	color: var(--color-black);
+	background: var(--color-gray-light);
+}

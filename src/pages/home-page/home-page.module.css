@@ -1,0 +1,19 @@
+.home {
+    padding-top: 40px;
+	max-width: 640px;
+	margin: 0 auto;
+	text-align: center;	
+}
+
+.home h1 {
+	font-family: var(--font-family-accent);
+	font-size: var(--font-size-xl);
+    color: var(--color-black);
+	margin-bottom: 16px;
+	
+}
+
+.home p {
+	color: var(--color-gray-dark);
+	font-size: var(--font-size-m);
+}

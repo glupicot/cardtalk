@@ -26,8 +26,11 @@ export const Card = ({ word }: Props) => {
 
         <div className={styles.back}>
           <span className={styles.title}>{title}</span>
-          <p className={styles.word}>{word.word}</p>
-          <p className={styles.translation}>{word.translation}</p>
+          <div className={styles.pair}>
+            <span className={styles.word}>{word.word}</span>
+            <span className={styles.equals}>=</span>
+            <span className={styles.translation}>{word.translation}</span>
+          </div>
           <button className={styles.action} onClick={() => setFlipped(false)}>
             НАЗАД
           </button>

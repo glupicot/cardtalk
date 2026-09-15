@@ -1,73 +1,43 @@
 .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 32px;
-    background: var(--color-white);
-    border-bottom: 1px solid var(--color-gray-light);
-    box-shadow: var(--shadow-s);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 32px;
+	background: var(--color-white);
+	border-bottom: 1px solid var(--color-gray-light);
+	box-shadow: var(--shadow-s);
 }
 
 .logo {
-    font-family: var(--font-family-accent);
-    font-size: var(--font-size-l);
-    color: var(--color-black);
-    text-decoration: none;
-    transition: transform 0.15s, color 0.15s;
+	font-family: var(--font-family-accent);
+	font-size: var(--font-size-l);
+	color: var(--color-black);
+	text-decoration: none;
+	transition: transform 0.15s, color 0.15s;
 }
 
 .logo:hover {
-    transform: scale(1.1);
-    color: var(--color-indigo);
+	transform: scale(1.1);
+	color: var(--color-indigo);
 }
 
 .tabs {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.tab {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: var(--font-size-s);
-    color: var(--color-gray-dark);
-    cursor: pointer;
-    transition: color 0.15s;
-}
-
-.tab:hover {
-    color: var(--color-indigo);
-}
-
-.active {
-    color: var(--color-indigo);
-    font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 24px;
 }
 
 .user {
-    font-family: var(--font-family-accent);
-    display: flex;
-    align-items: center;
-    color: var(--color-gray-dark);
-    gap: 26px;
-    font-size: var(--font-size-s);
+	display: flex;
+	align-items: center;
+	gap: 26px;
+	font-family: var(--font-family-accent);
+	font-size: var(--font-size-s);
+	line-height: 1;
+	color: var(--color-gray-dark);
 }
 
-.logout {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: var(--font-size-s);
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: var(--color-indigo);
-    cursor: pointer;
-    text-transform: uppercase;
-
-}
-
-.logout:hover {
-    color: var(--color-black);
+.active {
+	color: var(--color-indigo);
+	font-weight: 600;
 }

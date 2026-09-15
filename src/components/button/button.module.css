@@ -1,0 +1,53 @@
+.button {
+	cursor: pointer;
+	border: none;
+	background: none;
+	font-family: inherit;
+	transition: background 0.15s, color 0.15s;
+}
+
+.big {
+	width: 100%;
+	padding: 12px;
+	background: var(--color-indigo);
+	color: var(--color-white);
+	border-radius: var(--radius-s);
+	font-size: var(--font-size-m);
+}
+
+.big:hover {
+	background: var(--color-indigo-dark);
+}
+
+.tab {
+	padding: 0;
+	font-family: var(--font-family-accent);
+	font-size: var(--font-size-s);
+	line-height: 1;
+	color: var(--color-indigo);
+}
+.tab:hover {
+	color: var(--color-indigo);
+}
+
+.action {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 40px;
+	padding: 0 16px;
+	font-size: var(--font-size-xs);
+	font-weight: 600;
+	color: var(--color-indigo);
+	background: transparent;
+	border: 1px solid var(--color-indigo);
+	border-radius: var(--radius-s);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.action:hover {
+	background: var(--color-indigo);
+	color: var(--color-white);
+}

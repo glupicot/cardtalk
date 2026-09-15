@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Word } from '../../types'
 import { getRandomTitle } from '../../utils/titles-utils'
+import { Button } from '../button/button'
 import styles from './card.module.css'
 
 interface Props {
@@ -19,9 +20,9 @@ export const Card = ({ word }: Props) => {
           <p className={styles.word}>{word.word}</p>
           <p className={styles.pos}>{word.partOfSpeech}</p>
           <p className={styles.example}>{word.example}</p>
-          <button className={styles.action} onClick={() => setFlipped(true)}>
+          <Button variant="action" onClick={() => setFlipped(true)}>
             ПЕРЕВОД
-          </button>
+          </Button>
         </div>
 
         <div className={styles.back}>
@@ -31,9 +32,9 @@ export const Card = ({ word }: Props) => {
             <span className={styles.equals}>=</span>
             <span className={styles.translation}>{word.translation}</span>
           </div>
-          <button className={styles.action} onClick={() => setFlipped(false)}>
+          <Button variant="action" onClick={() => setFlipped(false)}>
             НАЗАД
-          </button>
+          </Button>
         </div>
       </div>
     </div>

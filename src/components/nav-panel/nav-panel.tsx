@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Button } from '../button/button'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { logout } from '../../store/slices/user-slice'
 import { ROUTES } from '../../constants/routes'
@@ -40,29 +41,31 @@ export const NavPanel = ({
 
       <nav className={styles.tabs}>
         {tabs.map((tab) => (
-          <button
+          <Button
             key={tab.id}
-            className={`${styles.tab} ${pathname === tab.to ? styles.active : ''}`}
+            variant="tab"
+            className={pathname === tab.to ? styles.active : ''}
             onClick={() => navigate(tab.to)}
           >
             {tab.label}
-          </button>
+          </Button>
         ))}
 
         {isAuth ? (
           <div className={styles.user}>
             <span>{login}</span>
-            <button className={styles.logout} onClick={handleLogout}>
-              Выйти
-            </button>
+            <Button variant="tab" onClick={handleLogout}>
+              ВЫЙТИ
+            </Button>
           </div>
         ) : (
-          <button
-            className={`${styles.tab} ${pathname === ROUTES.LOGIN ? styles.active : ''}`}
+          <Button
+            variant="tab"
+            className={pathname === ROUTES.LOGIN ? styles.active : ''}
             onClick={() => navigate(ROUTES.LOGIN)}
           >
-            Войти
-          </button>
+            ВОЙТИ
+          </Button>
         )}
       </nav>
     </header>

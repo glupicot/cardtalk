@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Input } from '../../components/input/input'
+import { Button } from '../../components/button/button'
 import { authService } from '../../services/auth-service'
 import { useAppDispatch } from '../../store/hooks'
 import { setUser } from '../../store/slices/user-slice'
@@ -61,9 +62,9 @@ const LoginPage = () => {
           <p className={styles.error}>{errors.password.message}</p>
         )}
 
-        <button className={styles.button} type="submit" disabled={isSubmitting}>
+        <Button variant="big" type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Входим...' : 'Войти'}
-        </button>
+        </Button>
       </form>
     </div>
   )

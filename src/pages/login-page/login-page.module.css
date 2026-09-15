@@ -36,21 +36,6 @@
 	margin-bottom: 16px;
 }
 
-.button {
-	padding: 12px;
-	background: var(--color-indigo);
-	color: var(--color-white);
-	border: none;
-	border-radius: var(--radius-s);
-	font-size: var(--font-size-m);
-	cursor: pointer;
-	transition: background 0.15s;
-}
-
-.button:hover {
-	background: var(--color-indigo-dark);
-}
-
 .error {
 	text-align: center;
 	color: var(--color-red);

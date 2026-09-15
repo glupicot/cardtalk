@@ -6,7 +6,7 @@ import { Footer } from './components/footer/footer';
 import { Body } from './components/body/body';
 import HomePage from './pages/home-page/home-page';
 import LoginPage from './pages/login-page/login-page';
-import { CardsPage } from './pages/cards-page/cards-page';
+import CardsPage from './pages/cards-page/cards-page';
 import { ProfilePage } from './pages/profile-page/profile-page';
 
 export default function App() {

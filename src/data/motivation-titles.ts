@@ -1,0 +1,16 @@
+export const MOTIVATION_TITLES = [
+  'Word of the Day',
+  'Fake It Till You Make It',
+  'Main Character Energy',
+  "Tomorrow's Problem",
+  'Fuel for the Grind',
+  'Small Steps, Big Ego',
+  'Do It Scared',
+  'Trust the Process',
+  'One More Chapter',
+  'Manifesting Chaos',
+  'Bare Minimum Vibes',
+  'Rise and Grind',
+  'This Is Fine',
+  'Plot Twist: You Got This',
+]

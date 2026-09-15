@@ -17,3 +17,10 @@
 	color: var(--color-gray-dark);
 	font-size: var(--font-size-m);
 }
+.image {
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-s);
+}

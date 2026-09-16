@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { EditView } from '../../components/edit-view/edit-view';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { updateField, setProfile } from '../../store/slices/profile-slice';
+import { updateField } from '../../store/slices/profile-slice';
 import { PROFILE_FIELDS } from '../../constants/profile';
 import type { ProfileField } from '../../types';
 

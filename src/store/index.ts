@@ -1,15 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit'
-import userReducer from './slices/user-slice'
-import wordsReducer from './slices/words-slice'
-import profileReducer from './slices/profile-slice'
+import { configureStore } from '@reduxjs/toolkit';
+import { api } from '../api/api';
+import userReducer from './slices/user-slice';
+import wordsReducer from './slices/words-slice';
+import profileReducer from './slices/profile-slice';
 
 export const store = configureStore({
-  reducer: {
-    user: userReducer,
-    words: wordsReducer,
-    profile: profileReducer,
-  },
-})
+	reducer: {
+		[api.reducerPath]: api.reducer,
+		user: userReducer,
+		words: wordsReducer,
+		profile: profileReducer,
+	},
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware().concat(api.middleware),
+});
 
-export type AppDispatch = typeof store.dispatch
-export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

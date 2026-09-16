@@ -1,5 +1,5 @@
 import { Card } from '../card/card'
-import type { Word } from '../../types'
+import type { Word } from '../../types/word';
 import styles from './card-list.module.css'
 
 interface Props {

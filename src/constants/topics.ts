@@ -1,4 +1,4 @@
-import type { Topic } from '../types'
+import type { Topic } from '../types/word';
 
 export const TOPICS: Topic[] = [
   { id: 'basics', title: 'Basics', emoji: '📘' },

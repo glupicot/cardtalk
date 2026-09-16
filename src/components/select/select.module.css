@@ -69,3 +69,12 @@
 	color: var(--color-indigo);
 	font-weight: 500;
 }
+.disabled {
+	background: var(--color-gray-light);
+	color: var(--color-gray);
+	cursor: not-allowed;
+}
+
+.disabled:hover {
+	border-color: var(--color-gray);
+}

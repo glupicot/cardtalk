@@ -2,18 +2,21 @@ import { http, HttpResponse } from 'msw';
 import { ADMIN_LOGIN, ADMIN_PASSWORD } from './data/auth';
 import { PROFILE_FIELDS } from './data/profile';
 import { WORDS } from './data/words';
-import type { ProfileField } from '../types';
+import type { ProfileValues } from '../types';
 
 const ACCESS_COOKIE = 'access_token';
 const PROFILE_STORAGE_KEY = 'mock_profile';
 
-const getStoredProfile = (): ProfileField[] => {
+const defaultProfileValues = (): ProfileValues =>
+	Object.fromEntries(PROFILE_FIELDS.map((f) => [f.name, f.value]));
+
+const getStoredProfile = (): ProfileValues => {
 	const raw = localStorage.getItem(PROFILE_STORAGE_KEY);
-	if (!raw) return PROFILE_FIELDS;
+	if (!raw) return defaultProfileValues();
 	try {
-		return JSON.parse(raw) as ProfileField[];
+		return JSON.parse(raw) as ProfileValues;
 	} catch {
-		return PROFILE_FIELDS;
+		return defaultProfileValues();
 	}
 };
 
@@ -26,38 +29,22 @@ export const handlers = [
 	http.post('/api/authorization', async ({ request }) => {
 		const body = (await request.json()) as { login: string; password: string };
 		if (body.login === ADMIN_LOGIN && body.password === ADMIN_PASSWORD) {
-			return HttpResponse.json(
-				{ name: 'Admin' },
-				{
-					headers: {
-						'Set-Cookie': `${ACCESS_COOKIE}=access; Path=/; SameSite=Lax`,
-					},
-				}
-			);
+			document.cookie = `${ACCESS_COOKIE}=access; path=/`;
+			return HttpResponse.json({ name: 'Admin' });
 		}
 		return HttpResponse.json({ message: 'Invalid credentials' }, { status: 401 });
 	}),
 
 	http.post('/api/refresh', () => {
-		return HttpResponse.json(
-			{},
-			{
-				headers: {
-					'Set-Cookie': `${ACCESS_COOKIE}=access; Path=/; SameSite=Lax`,
-				},
-			}
-		);
+		if (readCookie(ACCESS_COOKIE) !== 'access') {
+			return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
+		}
+		return HttpResponse.json({});
 	}),
 
 	http.post('/api/logout', () => {
-		return HttpResponse.json(
-			{},
-			{
-				headers: {
-					'Set-Cookie': `${ACCESS_COOKIE}=; Path=/; Max-Age=0`,
-				},
-			}
-		);
+		document.cookie = `${ACCESS_COOKIE}=; path=/; max-age=0`;
+		return HttpResponse.json({});
 	}),
 
 	http.get('/api/me', () => {
@@ -78,8 +65,8 @@ export const handlers = [
 		if (readCookie(ACCESS_COOKIE) !== 'access') {
 			return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
 		}
-		const body = (await request.json()) as { fields: ProfileField[] };
-		localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(body.fields));
+		const body = (await request.json()) as ProfileValues;
+		localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(body));
 		return HttpResponse.json({ ok: true });
 	}),
 

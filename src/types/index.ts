@@ -72,3 +72,5 @@ export interface User {
   login: string
   isAuth: boolean
 }
+
+export type ProfileValues = Record<string, string | string[]>;

@@ -1,17 +1,17 @@
 import { api } from './api';
-import type { ProfileField } from '../../types';
+import type { ProfileValues } from '../../types';
 
 export const profileApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		getProfile: builder.query<ProfileField[], void>({
+		getProfile: builder.query<ProfileValues, void>({
 			query: () => '/profile',
 			providesTags: ['Profile'],
 		}),
-		saveProfile: builder.mutation<{ ok: boolean }, ProfileField[]>({
-			query: (fields) => ({
+		saveProfile: builder.mutation<{ ok: boolean }, ProfileValues>({
+			query: (values) => ({
 				url: '/profile',
 				method: 'PUT',
-				body: { fields },
+				body: values,
 			}),
 			invalidatesTags: ['Profile'],
 		}),

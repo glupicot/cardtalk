@@ -6,8 +6,9 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateFields, setProfile } from '../../store/slices/profile-slice';
 import { setUser } from '../../store/slices/user-slice';
 import { useGetProfileQuery, useSaveProfileMutation } from '../../store/slices/profile-api';
+import { PROFILE_SECTIONS } from '../../constants/sections';
 import { ROUTES } from '../../constants/routes';
-import type { ProfileField } from '../../types';
+import type { ProfileField, ProfileValues } from '../../types';
 
 interface IToast {
 	message: string;
@@ -25,9 +26,16 @@ const ProfilePage = () => {
 	const [saveProfile] = useSaveProfileMutation();
 
 	useEffect(() => {
-		if (isSuccess && data) {
-			dispatch(setProfile(data));
-		}
+		if (!isSuccess || !data) return;
+
+		const merged: ProfileField[] = Object.values(PROFILE_SECTIONS)
+			.flat()
+			.map((field) => ({
+				...field,
+				value: data[field.name] ?? field.value,
+			})) as ProfileField[];
+
+		dispatch(setProfile(merged));
 	}, [isSuccess, data, dispatch]);
 
 	if (!isAuth) return <Navigate to="/login" />;
@@ -57,7 +65,10 @@ const ProfilePage = () => {
 
 	const handleSave = async () => {
 		try {
-			await saveProfile(fields).unwrap();
+			const values: ProfileValues = Object.fromEntries(
+				fields.map((f) => [f.name, f.value])
+			);
+			await saveProfile(values).unwrap();
 
 			const firstName = fields.find((f) => f.name === 'firstName');
 			if (firstName && typeof firstName.value === 'string' && firstName.value.trim()) {

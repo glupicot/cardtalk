@@ -1,5 +1,5 @@
 import { api } from './api';
-import type { Word } from '../types';
+import type { Word } from '../../types';
 
 export const wordsApi = api.injectEndpoints({
 	endpoints: (builder) => ({

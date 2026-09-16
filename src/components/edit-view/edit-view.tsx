@@ -1,7 +1,7 @@
 import type { ProfileField } from '../../types';
 import { Field } from '../field/field';
 import { Button } from '../button/button';
-import { PROFILE_SECTIONS } from '../../constants/profile';
+import { PROFILE_SECTIONS } from '../../constants/sections';
 import styles from './edit-view.module.css';
 
 interface Props {

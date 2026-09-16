@@ -9,7 +9,10 @@ import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Body } from './components/body/body';
 import { GuestOnly } from './components/guest-only/guest-only';
-import { HomePage, LoginPage, CardsPage, ProfilePage } from './pages';
+import { HomePage } from './pages/home-page';
+import { LoginPage } from './pages/login-page';
+import { CardsPage } from './pages/cards-page';
+import { ProfilePage } from './pages/profile-page';
 import { ROUTES } from './constants/routes';
 
 const AppContent = () => {

@@ -14,8 +14,11 @@ export type Topic = {
 }
 
 interface BaseField {
-  name: string
-  label: string
+	name: string;
+	label: string;
+	visibleWhen?: { field: string; value: string };
+	disabledWhen?: { field: string; value: string };
+	valueWhenDisabled?: string | number | string[];
 }
 
 export interface TextField extends BaseField {

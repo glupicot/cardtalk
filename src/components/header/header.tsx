@@ -3,7 +3,7 @@ import { Button } from '../button/button'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { logout } from '../../store/slices/user-slice'
 import { ROUTES } from '../../constants/routes'
-import styles from './nav-panel.module.css'
+import styles from './header.module.css'
 
 interface ITab {
   id: string
@@ -11,17 +11,17 @@ interface ITab {
   to: string
 }
 
-interface INavPanelProps {
+interface IHeaderProps {
   logo?: string
   logoTo?: string
   tabs: ITab[]
 }
 
-export const NavPanel = ({
+export const Header = ({
   logo = 'CardTalk',
   logoTo = ROUTES.HOME,
   tabs,
-}: INavPanelProps) => {
+}: IHeaderProps) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const dispatch = useAppDispatch()

@@ -1,23 +1,24 @@
 import { Provider } from 'react-redux'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { store } from './store'
-import { NavPanel } from './components/nav-panel/nav-panel'
+import { Header } from './components/header/header'
 import { Footer } from './components/footer/footer'
 import { Body } from './components/body/body'
 import { ProtectedRoute } from './components/protected-route/protected-route'
 import HomePage from './pages/home-page/home-page'
 import LoginPage from './pages/login-page/login-page'
 import CardsPage from './pages/cards-page/cards-page'
-import { ProfilePage } from './pages/profile-page/profile-page'
+import ProfilePage from './pages/profile-page/profile-page'
 import { ROUTES } from './constants/routes'
 
 export default function App() {
 	return (
 		<Provider store={store}>
 			<BrowserRouter>
-				<NavPanel
+				<Header
 					tabs={[
-						{ id: 'cards', label: 'КАРТОЧКИ', to: ROUTES.CARDS },
+						{ id: 'cards', label: 'Карточки', to: ROUTES.CARDS },
+						{ id: 'profile', label: 'Профиль', to: ROUTES.PROFILE },
 					]}
 				/>
 				<Body>

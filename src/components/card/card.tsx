@@ -21,7 +21,7 @@ export const Card = ({ word }: Props) => {
           <p className={styles.pos}>{word.partOfSpeech}</p>
           <p className={styles.example}>{word.example}</p>
           <Button variant="action" onClick={() => setFlipped(true)}>
-            ПЕРЕВОД
+            Узнать перевод
           </Button>
         </div>
 
@@ -33,7 +33,7 @@ export const Card = ({ word }: Props) => {
             <span className={styles.translation}>{word.translation}</span>
           </div>
           <Button variant="action" onClick={() => setFlipped(false)}>
-            НАЗАД
+            Перевернуть обратно
           </Button>
         </div>
       </div>

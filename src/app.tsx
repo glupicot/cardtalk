@@ -9,6 +9,7 @@ import { HomePage } from './pages/home-page';
 import { LoginPage } from './pages/login-page';
 import { CardsPage } from './pages/cards-page';
 import { ProfilePage } from './pages/profile-page';
+import { NotFoundPage } from './pages/not-found-page';
 import { ROUTES } from './constants/routes';
 
 const AppContent = () => {
@@ -22,6 +23,8 @@ const AppContent = () => {
 						<Route path={ROUTES.LOGIN} element={<LoginPage />} />
 						<Route path={ROUTES.CARDS} element={<CardsPage />} />
 						<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+						<Route path="*" element={<NotFoundPage />} />
+
 					</Routes>
 				</Suspense>
 			</Body>

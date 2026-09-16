@@ -23,13 +23,15 @@ const ProfilePage = () => {
 			if (field.disabledWhen?.field === name) {
 				const other = updated.find((f) => f.name === name);
 				const shouldDisable = other?.value === field.disabledWhen.value;
+
 				if (shouldDisable && field.valueWhenDisabled !== undefined) {
 					dispatch(updateField({ name: field.name, value: field.valueWhenDisabled }));
+				} else if (!shouldDisable) {
+					dispatch(updateField({ name: field.name, value: '' }));
 				}
 			}
 		});
 	};
-
 	const handleSave = () => {
 		console.log('Сохранить:', fields);
 	};

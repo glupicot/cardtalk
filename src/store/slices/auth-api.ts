@@ -1,4 +1,4 @@
-import { publicApi } from './api';
+import { api } from './api';
 
 interface LoginRequest {
 	login: string;
@@ -9,7 +9,7 @@ interface LoginResponse {
 	name: string;
 }
 
-export const authApi = publicApi.injectEndpoints({
+export const authApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		login: builder.mutation<LoginResponse, LoginRequest>({
 			query: (credentials) => ({
@@ -17,12 +17,15 @@ export const authApi = publicApi.injectEndpoints({
 				method: 'POST',
 				body: credentials,
 			}),
+			extraOptions: { skipReauth: true },
 		}),
 		logout: builder.mutation<void, void>({
 			query: () => ({
 				url: '/logout',
 				method: 'POST',
 			}),
+			extraOptions: { skipReauth: true },
+			invalidatesTags: ['User', 'Profile', 'Words'],
 		}),
 	}),
 });

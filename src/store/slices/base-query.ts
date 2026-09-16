@@ -5,7 +5,7 @@ import type {
 	FetchArgs,
 	FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
-import { logout } from '../slices/user-slice';
+import { logout } from './user-slice';
 
 export const baseQuery = fetchBaseQuery({
 	baseUrl: '/api',
@@ -37,14 +37,19 @@ const refreshSession = async (
 	return pending;
 };
 
+interface ExtraOptions {
+	skipReauth?: boolean;
+}
+
 export const baseQueryWithReauth: BaseQueryFn<
 	string | FetchArgs,
 	unknown,
-	FetchBaseQueryError
+	FetchBaseQueryError,
+	ExtraOptions
 > = async (args, api, extraOptions) => {
 	let result = await baseQuery(args, api, extraOptions);
 
-	if (result.error?.status === 401) {
+	if (result.error?.status === 401 && !extraOptions?.skipReauth) {
 		const isRefreshed = await refreshSession(api, extraOptions);
 
 		if (isRefreshed) {

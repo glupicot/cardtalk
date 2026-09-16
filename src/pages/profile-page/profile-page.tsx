@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,7 +26,7 @@ const ProfilePage = () => {
 	const login = useAppSelector((s) => s.user.login);
 	const navigate = useNavigate();
 	const [toast, setToast] = useState<IToast | null>(null);
-	const [initialized, setInitialized] = useState(false);
+	const initializedRef = useRef(false);
 
 	const { data, isSuccess, isLoading } = useGetProfileQuery(undefined, { skip: !login });
 	const [saveProfile] = useSaveProfileMutation();
@@ -45,11 +45,11 @@ const ProfilePage = () => {
 	});
 
 	useEffect(() => {
-		if (isSuccess && data && !initialized) {
+		if (isSuccess && data && !initializedRef.current) {
 			reset({ ...defaultValues, ...data } as ProfileFormData, { keepDirty: false });
-			setInitialized(true);
+			initializedRef.current = true;
 		}
-	}, [isSuccess, data, reset, initialized]);
+	}, [isSuccess, data, reset]);
 
 	if (!login) return <Navigate to={ROUTES.HOME} />;
 	if (isLoading) return <div className="loader">Загрузка профиля...</div>;

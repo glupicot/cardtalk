@@ -26,6 +26,7 @@ const ProfilePage = () => {
 	const login = useAppSelector((s) => s.user.login);
 	const navigate = useNavigate();
 	const [toast, setToast] = useState<IToast | null>(null);
+	const [initialized, setInitialized] = useState(false);
 
 	const { data, isSuccess, isLoading } = useGetProfileQuery(undefined, { skip: !login });
 	const [saveProfile] = useSaveProfileMutation();
@@ -44,10 +45,11 @@ const ProfilePage = () => {
 	});
 
 	useEffect(() => {
-		if (isSuccess && data) {
+		if (isSuccess && data && !initialized) {
 			reset({ ...defaultValues, ...data } as ProfileFormData, { keepDirty: false });
+			setInitialized(true);
 		}
-	}, [isSuccess, data, reset]);
+	}, [isSuccess, data, reset, initialized]);
 
 	if (!login) return <Navigate to={ROUTES.HOME} />;
 	if (isLoading) return <div className="loader">Загрузка профиля...</div>;

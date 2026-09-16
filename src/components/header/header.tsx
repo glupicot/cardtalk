@@ -16,7 +16,7 @@ export const Header = () => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const dispatch = useAppDispatch();
-	const isAuth = useAppSelector((s) => s.user.isAuth);
+	const login = useAppSelector((s) => s.user.login);
 	const [logoutRequest] = useLogoutMutation();
 
 	const handleLogout = async () => {
@@ -37,7 +37,7 @@ export const Header = () => {
 			</Link>
 
 			<nav className={styles.nav}>
-				{isAuth ? (
+				{login ? (
 					<>
 						{AUTH_TABS.map((tab) => (
 							<Button

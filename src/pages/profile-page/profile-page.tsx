@@ -4,7 +4,6 @@ import { EditView } from '../../components/edit-view/edit-view';
 import { Toast } from '../../components/toast/toast';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateFields, setProfile } from '../../store/slices/profile-slice';
-import { setUser } from '../../store/slices/user-slice';
 import { useGetProfileQuery, useSaveProfileMutation } from '../../store/slices/profile-api';
 import { PROFILE_SECTIONS } from '../../constants/sections';
 import { ROUTES } from '../../constants/routes';
@@ -16,7 +15,7 @@ interface IToast {
 }
 
 const ProfilePage = () => {
-	const isAuth = useAppSelector((s) => s.user.isAuth);
+	const login = useAppSelector((s) => s.user.login);
 	const fields = useAppSelector((s) => s.profile);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -38,7 +37,7 @@ const ProfilePage = () => {
 		dispatch(setProfile(merged));
 	}, [isSuccess, data, dispatch]);
 
-	if (!isAuth) return <Navigate to="/login" />;
+	if (!login) return <Navigate to={ROUTES.HOME} />;
 
 	const handleChange = (name: string, value: ProfileField['value']) => {
 		const updates: Array<{ name: string; value: ProfileField['value'] }> = [
@@ -69,11 +68,6 @@ const ProfilePage = () => {
 				fields.map((f) => [f.name, f.value])
 			);
 			await saveProfile(values).unwrap();
-
-			const firstName = fields.find((f) => f.name === 'firstName');
-			if (firstName && typeof firstName.value === 'string' && firstName.value.trim()) {
-				dispatch(setUser(firstName.value));
-			}
 
 			setToast({ message: 'Профиль сохранён', type: 'success' });
 			setTimeout(() => navigate(ROUTES.CARDS), 800);

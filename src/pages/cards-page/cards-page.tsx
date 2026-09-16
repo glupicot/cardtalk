@@ -7,7 +7,7 @@ import { useGetWordsQuery } from '../../store/slices/words-api';
 import { ROUTES } from '../../constants/routes';
 
 const CardsPage = () => {
-	const isAuth = useAppSelector((s) => s.user.isAuth);
+	const login = useAppSelector((s) => s.user.login);
 	const { data: words = [], isLoading } = useGetWordsQuery();
 	const [selectedTopic, setSelectedTopic] = useState('');
 
@@ -25,7 +25,7 @@ const CardsPage = () => {
 		[words, selectedTopic]
 	);
 
-	if (!isAuth) return <Navigate to={ROUTES.HOME} />;
+	if (!login) return <Navigate to={ROUTES.HOME} />;
 	if (isLoading) return <div>Загрузка...</div>;
 
 	return (

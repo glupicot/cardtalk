@@ -66,7 +66,7 @@ const LoginPage = () => {
 				)}
 
 				<Button variant="big" type="submit" disabled={isLoading}>
-					{isLoading ? 'Загружаем...' : 'Войти'}
+					{isLoading ? 'Входим...' : 'Войти'}
 				</Button>
 			</form>
 		</div>

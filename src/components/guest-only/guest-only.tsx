@@ -8,9 +8,9 @@ interface Props {
 }
 
 export const GuestOnly = ({ children }: Props) => {
-	const isAuth = useAppSelector((s) => s.user.isAuth);
+	const login = useAppSelector((s) => s.user.login);
 
-	if (isAuth) return <Navigate to={ROUTES.CARDS} />;
+	if (login) return <Navigate to={ROUTES.CARDS} />;
 
 	return <>{children}</>;
 };

@@ -27,7 +27,7 @@ const ProfilePage = () => {
 	const navigate = useNavigate();
 	const [toast, setToast] = useState<IToast | null>(null);
 
-	const { data, isSuccess } = useGetProfileQuery();
+	const { data, isSuccess, isLoading } = useGetProfileQuery();
 	const [saveProfile] = useSaveProfileMutation();
 
 	const {
@@ -50,6 +50,7 @@ const ProfilePage = () => {
 	}, [isSuccess, data, reset]);
 
 	if (!login) return <Navigate to={ROUTES.HOME} />;
+	if (isLoading) return <div className="loader">Загрузка профиля...</div>;
 
 	const onSubmit = async (values: ProfileFormData) => {
 		try {

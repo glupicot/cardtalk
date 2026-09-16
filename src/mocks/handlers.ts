@@ -47,13 +47,6 @@ export const handlers = [
 		return HttpResponse.json({});
 	}),
 
-	http.get('/api/me', () => {
-		if (readCookie(ACCESS_COOKIE) !== 'access') {
-			return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
-		}
-		return HttpResponse.json({ name: 'Admin' });
-	}),
-
 	http.get('/api/profile', () => {
 		if (readCookie(ACCESS_COOKIE) !== 'access') {
 			return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });

@@ -2,11 +2,12 @@ import { useState, useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
 import { CardList } from '../../components/card-list/card-list';
 import { TopicFilter } from '../../components/topic-filter/topic-filter';
-import { useGetMeQuery } from '../../store/slices/auth-api';
+import { useAppSelector } from '../../store/hooks';
 import { useGetWordsQuery } from '../../store/slices/words-api';
+import { ROUTES } from '../../constants/routes';
 
 const CardsPage = () => {
-	const { isLoading: isMeLoading, isError: isMeError } = useGetMeQuery();
+	const isAuth = useAppSelector((s) => s.user.isAuth);
 	const { data: words = [], isLoading } = useGetWordsQuery();
 	const [selectedTopic, setSelectedTopic] = useState('');
 
@@ -24,8 +25,7 @@ const CardsPage = () => {
 		[words, selectedTopic]
 	);
 
-	if (isMeLoading) return <div>Загрузка...</div>;
-	if (isMeError) return <Navigate to="/login" />;
+	if (!isAuth) return <Navigate to={ROUTES.HOME} />;
 	if (isLoading) return <div>Загрузка...</div>;
 
 	return (

@@ -1,4 +1,4 @@
-import { api, publicApi } from './api';
+import { publicApi } from './api';
 
 interface LoginRequest {
 	login: string;
@@ -9,7 +9,7 @@ interface LoginResponse {
 	name: string;
 }
 
-export const authPublicApi = publicApi.injectEndpoints({
+export const authApi = publicApi.injectEndpoints({
 	endpoints: (builder) => ({
 		login: builder.mutation<LoginResponse, LoginRequest>({
 			query: (credentials) => ({
@@ -27,14 +27,4 @@ export const authPublicApi = publicApi.injectEndpoints({
 	}),
 });
 
-export const authApi = api.injectEndpoints({
-	endpoints: (builder) => ({
-		getMe: builder.query<LoginResponse, void>({
-			query: () => '/me',
-			providesTags: ['User'],
-		}),
-	}),
-});
-
-export const { useLoginMutation, useLogoutMutation } = authPublicApi;
-export const { useGetMeQuery } = authApi;
+export const { useLoginMutation, useLogoutMutation } = authApi;

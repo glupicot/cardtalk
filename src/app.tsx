@@ -1,14 +1,10 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { store } from './store';
-import { useAppDispatch } from './store/hooks';
-import { setUser, logout } from './store/slices/user-slice';
-import { useGetMeQuery } from './store/slices/auth-api';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Body } from './components/body/body';
-import { GuestOnly } from './components/guest-only/guest-only';
 import { HomePage } from './pages/home-page';
 import { LoginPage } from './pages/login-page';
 import { CardsPage } from './pages/cards-page';
@@ -16,32 +12,13 @@ import { ProfilePage } from './pages/profile-page';
 import { ROUTES } from './constants/routes';
 
 const AppContent = () => {
-	const dispatch = useAppDispatch();
-	const { data, isError, isSuccess } = useGetMeQuery();
-
-	useEffect(() => {
-		if (isSuccess && data) {
-			dispatch(setUser(data.name));
-		}
-		if (isError) {
-			dispatch(logout());
-		}
-	}, [isSuccess, isError, data, dispatch]);
-
 	return (
 		<>
 			<Header />
 			<Body>
 				<Suspense fallback={<div>Загружаемся, уже скоро, ну почти...</div>}>
 					<Routes>
-						<Route
-							path={ROUTES.HOME}
-							element={
-								<GuestOnly>
-									<HomePage />
-								</GuestOnly>
-							}
-						/>
+						<Route path={ROUTES.HOME} element={<HomePage />} />
 						<Route path={ROUTES.LOGIN} element={<LoginPage />} />
 						<Route path={ROUTES.CARDS} element={<CardsPage />} />
 						<Route path={ROUTES.PROFILE} element={<ProfilePage />} />

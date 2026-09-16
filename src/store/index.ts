@@ -4,14 +4,14 @@ import {
 	isAnyOf,
 } from '@reduxjs/toolkit';
 import { api, publicApi } from './slices/api';
-import { authPublicApi } from './slices/auth-api';
+import { authApi } from './slices/auth-api';
 import userReducer, { logout } from './slices/user-slice';
 import profileReducer, { clearProfile } from './slices/profile-slice';
 
 const sessionListener = createListenerMiddleware();
 
 sessionListener.startListening({
-	matcher: isAnyOf(logout, authPublicApi.endpoints.logout.matchFulfilled),
+	matcher: isAnyOf(logout, authApi.endpoints.logout.matchFulfilled),
 	effect: (_action, listenerApi) => {
 		listenerApi.dispatch(api.util.resetApiState());
 		listenerApi.dispatch(publicApi.util.resetApiState());

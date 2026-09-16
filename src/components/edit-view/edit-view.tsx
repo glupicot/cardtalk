@@ -1,6 +1,7 @@
 import type { ProfileField } from '../../types';
 import { Field } from '../field/field';
 import { Button } from '../button/button';
+import { PROFILE_SECTIONS } from '../../constants/profile';
 import styles from './edit-view.module.css';
 
 interface Props {
@@ -30,18 +31,26 @@ export const EditView = ({ fields, onChange, onSave }: Props) => {
 				onSave();
 			}}
 		>
-			{fields
-				.filter((field) => isVisible(field, fields))
-				.map((field) => (
-					<Field
-						key={field.name}
-						field={field}
-						disabled={isDisabled(field, fields)}
-						onChange={onChange}
-					/>
-				))}
+			{Object.entries(PROFILE_SECTIONS).map(([title, sectionFields]) => (
+				<section key={title} className={styles.section}>
+					<h2 className={styles.sectionTitle}>{title}</h2>
+					<div className={styles.sectionGrid}>
+						{sectionFields
+							.map((field) => fields.find((f) => f.name === field.name) ?? field)
+							.filter((field) => isVisible(field, fields))
+							.map((field) => (
+								<Field
+									key={field.name}
+									field={field}
+									disabled={isDisabled(field, fields)}
+									onChange={onChange}
+								/>
+							))}
+					</div>
+				</section>
+			))}
 
-			<Button variant="big" className={styles.button} type="submit">
+			<Button key="save" variant="big" className={styles.button} type="submit">
 				Сохранить
 			</Button>
 		</form>

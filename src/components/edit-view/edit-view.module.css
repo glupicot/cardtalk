@@ -1,22 +1,60 @@
 .form {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(300px, 336px));
-	justify-content: center;
-	gap: 8px 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 	max-width: 800px;
 	margin: 0 auto;
-	padding: 32px;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 28px 32px;
 	background: var(--color-white);
-	border-radius: var(--radius-l);
+	border-radius: 16px;
 	box-shadow: var(--shadow-m);
 }
- .button {
-     grid-column: 1 / -1;
-     justify-self: center;
- }
 
- @media (max-width: 640px) {
-     .form {
-         grid-template-columns: 1fr;
-     }
- }
+.sectionTitle {
+	position: relative;
+	padding-left: 16px;
+	font-family: var(--font-family-accent);
+	font-size: var(--font-size-m);
+	color: var(--color-black);
+}
+
+.sectionTitle::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 4px;
+	height: 20px;
+	background: var(--color-indigo);
+	border-radius: 2px;
+}
+
+.sectionGrid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(280px, 1fr));
+	gap: 16px 24px;
+	align-items: start;
+}
+
+.button {
+	align-self: center;
+	min-width: 280px;
+	margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+	.section {
+		padding: 20px;
+	}
+
+	.sectionGrid {
+		grid-template-columns: 1fr;
+	}
+}

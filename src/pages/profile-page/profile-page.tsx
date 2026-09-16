@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { EditView } from '../../components/edit-view/edit-view';
+import { Toast } from '../../components/toast/toast';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateFields, setProfile } from '../../store/slices/profile-slice';
 import { setUser } from '../../store/slices/user-slice';
@@ -9,11 +10,17 @@ import { PROFILE_FIELDS } from '../../constants/profile';
 import { ROUTES } from '../../constants/routes';
 import type { ProfileField } from '../../types';
 
+interface IToast {
+	message: string;
+	type: 'success' | 'error';
+}
+
 const ProfilePage = () => {
 	const isAuth = useAppSelector((s) => s.user.isAuth);
 	const fields = useAppSelector((s) => s.profile);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+	const [toast, setToast] = useState<IToast | null>(null);
 
 	const { data, isSuccess } = useGetProfileQuery();
 	const [saveProfile] = useSaveProfileMutation();
@@ -58,13 +65,25 @@ const ProfilePage = () => {
 				dispatch(setUser(firstName.value));
 			}
 
-			navigate(ROUTES.CARDS);
+			setToast({ message: 'Профиль сохранён', type: 'success' });
+			setTimeout(() => navigate(ROUTES.CARDS), 800);
 		} catch {
-			alert('Не удалось сохранить профиль');
+			setToast({ message: 'Не удалось сохранить профиль', type: 'error' });
 		}
 	};
 
-	return <EditView fields={fields} onChange={handleChange} onSave={handleSave} />;
+	return (
+		<>
+			<EditView fields={fields} onChange={handleChange} onSave={handleSave} />
+			{toast && (
+				<Toast
+					message={toast.message}
+					type={toast.type}
+					onClose={() => setToast(null)}
+				/>
+			)}
+		</>
+	);
 };
 
 export default ProfilePage;

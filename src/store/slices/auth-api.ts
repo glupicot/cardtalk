@@ -23,6 +23,7 @@ export const authApi = api.injectEndpoints({
 				url: '/logout',
 				method: 'POST',
 			}),
+			invalidatesTags: ['User', 'Profile', 'Words'],
 		}),
 		getMe: builder.query<LoginResponse, void>({
 			query: () => '/me',

@@ -1,6 +1,6 @@
 .card {
-	width: 280px;
-	height: 360px;
+	width: 396px;
+	height: 342px;
 	perspective: 1000px;
 }
 
@@ -23,29 +23,47 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	padding: 24px;
-	background: var(--color-white);
-	border: 1px solid var(--color-gray-light);
-	border-radius: var(--radius-l);
-	box-shadow: var(--shadow-s);
+	border-radius: 24px;
 	backface-visibility: hidden;
+	box-shadow: var(--shadow-m);
+	padding: 56px 36px 24px;
+
+}
+
+.front {
+	background: var(--color-white);
+	color: var(--color-black);
 }
 
 .back {
-	justify-content: flex-start;
-	align-items: center;
-	text-align: center;
+	background: var(--color-indigo);
+	color: var(--color-white);
 	transform: rotateY(180deg);
 }
-.back .title {
-	align-self: flex-start;
+
+.back button {
+	border-color: var(--color-white);
+	color: var(--color-white);
 }
-.pair {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 8px;
-	margin: auto 0;
+
+.back button:hover {
+	background: var(--color-white);
+	color: var(--color-indigo);
+}
+
+.circle {
+	position: absolute;
+	top: 16px;
+	left: 16px;
+	width: 16px;
+	height: 16px;
+	background: var(--color-white);
+	border: 1px solid var(--color-gray);
+	border-radius: 50%;
+}
+
+.back .circle {
+	border-color: var(--color-white);
 }
 
 .title {
@@ -55,20 +73,27 @@
 	color: var(--color-gray);
 }
 
+.back .title {
+	color: var(--color-gray);
+}
+
 .word {
 	font-family: var(--font-family-accent);
 	font-size: var(--font-size-xl);
 	color: var(--color-black);
 }
 
-.equals {
-	font-size: var(--font-size-l);
-	color: var(--color-gray);
+.back .word {
+	color: var(--color-white);
 }
 
 .pos {
 	font-size: var(--font-size-s);
 	font-style: italic;
+	color: var(--color-gray-dark);
+}
+
+.back .pos {
 	color: var(--color-gray);
 }
 
@@ -78,8 +103,26 @@
 	color: var(--color-gray-dark);
 }
 
+.back .example {
+	color: var(--color-gray);
+}
+
+.pair {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	flex: 1;
+	justify-content: center;
+}
+
+.equals {
+	font-size: var(--font-size-l);
+	color: var(--color-white);
+}
+
 .translation {
 	font-family: var(--font-family-accent);
 	font-size: var(--font-size-l);
-	color: var(--color-indigo);
+	color: var(--color-white);
 }

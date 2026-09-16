@@ -1,5 +1,10 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query';
-import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import type {
+	BaseQueryApi,
+	BaseQueryFn,
+	FetchArgs,
+	FetchBaseQueryError,
+} from '@reduxjs/toolkit/query';
 import { logout } from '../store/slices/user-slice';
 
 export const baseQuery = fetchBaseQuery({
@@ -10,8 +15,7 @@ export const baseQuery = fetchBaseQuery({
 let refreshRequest: Promise<boolean> | null = null;
 
 const refreshSession = async (
-	_args: string | FetchArgs,
-	api: Parameters<BaseQueryFn>[1],
+	api: BaseQueryApi,
 	extraOptions: object,
 ): Promise<boolean> => {
 	if (refreshRequest) return refreshRequest;
@@ -41,7 +45,7 @@ export const baseQueryWithReauth: BaseQueryFn<
 	let result = await baseQuery(args, api, extraOptions);
 
 	if (result.error?.status === 401) {
-		const isRefreshed = await refreshSession(args, api, extraOptions);
+		const isRefreshed = await refreshSession(api, extraOptions);
 
 		if (isRefreshed) {
 			result = await baseQuery(args, api, extraOptions);

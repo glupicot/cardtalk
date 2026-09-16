@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { EditView } from '../../components/edit-view/edit-view';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { updateField, setProfile } from '../../store/slices/profile-slice';
+import { updateFields, setProfile } from '../../store/slices/profile-slice';
 import { setUser } from '../../store/slices/user-slice';
 import { useGetProfileQuery, useSaveProfileMutation } from '../../api/profile-api';
 import { PROFILE_FIELDS } from '../../constants/profile';
@@ -27,7 +27,9 @@ const ProfilePage = () => {
 	if (!isAuth) return <Navigate to="/login" />;
 
 	const handleChange = (name: string, value: ProfileField['value']) => {
-		dispatch(updateField({ name, value }));
+		const updates: Array<{ name: string; value: ProfileField['value'] }> = [
+			{ name, value },
+		];
 
 		const updated = fields.map((f) => (f.name === name ? { ...f, value } : f));
 
@@ -37,12 +39,14 @@ const ProfilePage = () => {
 				const shouldDisable = other?.value === field.disabledWhen.value;
 
 				if (shouldDisable && field.valueWhenDisabled !== undefined) {
-					dispatch(updateField({ name: field.name, value: field.valueWhenDisabled }));
+					updates.push({ name: field.name, value: field.valueWhenDisabled });
 				} else if (!shouldDisable) {
-					dispatch(updateField({ name: field.name, value: '' }));
+					updates.push({ name: field.name, value: '' });
 				}
 			}
 		});
+
+		dispatch(updateFields(updates));
 	};
 
 	const handleSave = async () => {

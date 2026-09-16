@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Word } from '../../types';
+import type { Word } from '../../types/word';
 import { getRandomTitle } from '../../utils/titles-utils';
 import { Button } from '../button/button';
 import styles from './card.module.css';

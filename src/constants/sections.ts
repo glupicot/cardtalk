@@ -1,4 +1,4 @@
-import type { ProfileField } from '../types';
+import type { ProfileField } from '../types/profile';
 
 interface ProfileSection {
 	id: string;

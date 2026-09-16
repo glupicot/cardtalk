@@ -8,7 +8,7 @@ import { setUser } from '../../store/slices/user-slice';
 import { useGetProfileQuery, useSaveProfileMutation } from '../../store/slices/profile-api';
 import { PROFILE_SECTIONS } from '../../constants/sections';
 import { ROUTES } from '../../constants/routes';
-import type { ProfileField, ProfileValues } from '../../types';
+import type { ProfileField, ProfileValues } from '../../types/profile';
 
 interface IToast {
 	message: string;

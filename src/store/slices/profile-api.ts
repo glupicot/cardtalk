@@ -1,5 +1,5 @@
 import { api } from './api';
-import type { ProfileValues } from '../../types';
+import type { ProfileValues } from '../../types/profile';
 
 export const profileApi = api.injectEndpoints({
 	endpoints: (builder) => ({

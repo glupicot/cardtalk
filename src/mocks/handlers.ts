@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw';
 import { ADMIN_LOGIN, ADMIN_PASSWORD } from './data/auth';
 import { PROFILE_FIELDS } from './data/profile';
 import { WORDS } from './data/words';
-import type { ProfileValues } from '../types';
+import type { ProfileValues } from '../types/profile';
 
 const ACCESS_COOKIE = 'access_token';
 const PROFILE_STORAGE_KEY = 'mock_profile';

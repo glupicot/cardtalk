@@ -1,4 +1,4 @@
-import type { Word } from '../../types';
+import type { Word } from '../../types/word';
 
 export const WORDS: Word[] = [
 	{

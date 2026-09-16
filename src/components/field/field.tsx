@@ -17,20 +17,55 @@ interface Props {
 	disabled?: boolean;
 }
 
+const INPUT_TYPES = ['text', 'number', 'textarea', 'date'];
+
 export const Field = ({ field, register, control, errors, disabled }: Props) => {
 	const error = errors[field.name as keyof ProfileFormData];
-	const errorMessage = error?.message as string | undefined;
+	const errorMessage = typeof error?.message === 'string' ? error.message : undefined;
+	const hasHtmlFor = INPUT_TYPES.includes(field.type);
 
 	const renderControl = () => {
 		switch (field.type) {
 			case 'text':
-				return <Input type="text" {...register(field.name as keyof ProfileFormData)} disabled={disabled} hasError={!!error} />;
+				return (
+					<Input
+						id={field.name}
+						type="text"
+						{...register(field.name as keyof ProfileFormData)}
+						disabled={disabled}
+						hasError={!!error}
+					/>
+				);
 			case 'number':
-				return <Input type="text" inputMode="numeric" {...register(field.name as keyof ProfileFormData)} disabled={disabled} hasError={!!error} />;
+				return (
+					<Input
+						id={field.name}
+						type="text"
+						inputMode="numeric"
+						{...register(field.name as keyof ProfileFormData)}
+						disabled={disabled}
+						hasError={!!error}
+					/>
+				);
 			case 'textarea':
-				return <Textarea {...register(field.name as keyof ProfileFormData)} disabled={disabled} hasError={!!error} />;
+				return (
+					<Textarea
+						id={field.name}
+						{...register(field.name as keyof ProfileFormData)}
+						disabled={disabled}
+						hasError={!!error}
+					/>
+				);
 			case 'date':
-				return <Input type="date" {...register(field.name as keyof ProfileFormData)} disabled={disabled} hasError={!!error} />;
+				return (
+					<Input
+						id={field.name}
+						type="date"
+						{...register(field.name as keyof ProfileFormData)}
+						disabled={disabled}
+						hasError={!!error}
+					/>
+				);
 			case 'select':
 				return (
 					<Controller
@@ -39,7 +74,7 @@ export const Field = ({ field, register, control, errors, disabled }: Props) => 
 						render={({ field: rhfField }) => (
 							<Select
 								options={field.options.map((o) => ({ value: o, label: o }))}
-								value={rhfField.value as string}
+								value={(rhfField.value as string) ?? ''}
 								onChange={rhfField.onChange}
 								disabled={disabled}
 								placeholder="Выберите..."
@@ -84,7 +119,9 @@ export const Field = ({ field, register, control, errors, disabled }: Props) => 
 
 	return (
 		<div className={styles.field}>
-			<label className={styles.label}>{field.label}</label>
+			<label className={styles.label} htmlFor={hasHtmlFor ? field.name : undefined}>
+				{field.label}
+			</label>
 			{renderControl()}
 			{errorMessage && <span className={styles.error}>{errorMessage}</span>}
 		</div>

@@ -18,7 +18,7 @@ export const PROFILE_SECTIONS: ProfileSection[] = [
 			{ name: 'gender', label: 'Пол', type: 'radio', value: '', options: ['М', 'Ж'] },
 			{ name: 'maritalStatus', label: 'Семейное положение', type: 'radio', value: '', options: ['Не женат/Не замужем', 'Женат/Замужем', 'В разводе'] },
 			{ name: 'spouseName', label: 'Имя супруга', type: 'text', value: '', visibleWhen: { field: 'maritalStatus', value: 'Женат/Замужем' } },
-			{ name: 'maidenName', label: 'Девичья фамилия', type: 'text', value: '', disabledWhen: { field: 'maritalStatus', value: 'Женат/Замужем' }, valueWhenDisabled: 'не применимо' },
+			{ name: 'maidenName', label: 'Девичья фамилия', type: 'text', value: '', disabledWhen: { field: 'maritalStatus', value: 'Не женат/Не замужем' }, valueWhenDisabled: 'не применимо' },
 		],
 	},
 	{

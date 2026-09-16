@@ -30,6 +30,7 @@ export const authApi = api.injectEndpoints({
 		getMe: builder.query<LoginResponse, void>({
 			query: () => '/me',
 			providesTags: ['User'],
+			extraOptions: { skipReauth: true },
 		}),
 	}),
 });

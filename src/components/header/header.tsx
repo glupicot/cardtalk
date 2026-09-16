@@ -22,7 +22,8 @@ export const Header = () => {
 	const handleLogout = async () => {
 		try {
 			await logoutRequest().unwrap();
-		} catch {
+		} catch (error) {
+			console.error('Logout request failed:', error);
 		} finally {
 			dispatch(logout());
 			navigate(ROUTES.HOME);

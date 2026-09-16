@@ -38,6 +38,14 @@
 }
 
 .active {
-	color: var(--color-indigo);
-	font-weight: 600;
+	color: var(--color-black);
+}
+
+.greeting {
+	font-family: var(--font-family-main);
+	font-size: var(--font-size-m);
+	color: var(--color-gray-dark);
+	margin-right: 8px;
+	align-items: center;
+	text-align: center;
 }

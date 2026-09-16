@@ -40,6 +40,11 @@ export const Header = ({
       </Link>
 
       <nav className={styles.tabs}>
+        {isAuth && (
+          <span className={styles.greeting}>
+            Ready to grind, {login}
+          </span>
+        )}
         {tabs.map((tab) => (
           <Button
             key={tab.id}
@@ -53,7 +58,6 @@ export const Header = ({
 
         {isAuth ? (
           <div className={styles.user}>
-            <span>{login}</span>
             <Button variant="action" onClick={handleLogout}>
               Выйти
             </Button>

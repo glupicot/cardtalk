@@ -1,5 +1,6 @@
 import type { ProfileField } from '../../types';
 import { Field } from '../field/field';
+import { Button } from '../button/button';
 import styles from './edit-view.module.css';
 
 interface Props {
@@ -40,9 +41,9 @@ export const EditView = ({ fields, onChange, onSave }: Props) => {
 					/>
 				))}
 
-			<button className={styles.button} type="submit">
+			<Button variant="big" className={styles.button} type="submit">
 				Сохранить
-			</button>
+			</Button>
 		</form>
 	);
 };

@@ -6,9 +6,3 @@ export type Word = {
 	translation: string;
 	topics: string[];
 };
-
-export type Topic = {
-	id: string;
-	title: string;
-	emoji: string;
-};

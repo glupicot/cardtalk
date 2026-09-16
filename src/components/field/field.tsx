@@ -20,15 +20,16 @@ export const Field = ({ field, disabled, onChange }: FieldProps) => {
                         onChange={(e) => onChange(field.name, e.target.value)}
                     />
                 );
-   case 'number':
-	return (
-		<Input
-			type="number"
-			value={field.value}
-			disabled={disabled}
-			onChange={(e) => onChange(field.name, e.target.value)}
-		/>
-	);
+            case 'number':
+                return (
+                    <Input
+                        type="text"
+                        inputMode="numeric"
+                        value={field.value}
+                        disabled={disabled}
+                        onChange={(e) => onChange(field.name, e.target.value.replace(/\D/g, ''))}
+                    />
+                );
 
             case 'textarea':
                 return (

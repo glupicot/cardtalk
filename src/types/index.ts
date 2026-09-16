@@ -18,7 +18,7 @@ interface BaseField {
 	label: string;
 	visibleWhen?: { field: string; value: string };
 	disabledWhen?: { field: string; value: string };
-	valueWhenDisabled?: string | number | string[];
+	valueWhenDisabled?: string | string[];
 }
 
 export interface TextField extends BaseField {
@@ -28,7 +28,7 @@ export interface TextField extends BaseField {
 
 export interface NumberField extends BaseField {
   type: 'number'
-  value: number
+  value: string
 }
 
 export interface TextareaField extends BaseField {

@@ -4,7 +4,7 @@ export const PROFILE_SECTIONS: Record<string, ProfileField[]> = {
 	'Личные данные': [
 		{ name: 'firstName', label: 'Имя', type: 'text', value: '' },
 		{ name: 'lastName', label: 'Фамилия', type: 'text', value: '' },
-		{ name: 'age', label: 'Возраст', type: 'number', value: 0 },
+		{ name: 'age', label: 'Возраст', type: 'number', value: '' },
 		{ name: 'birthDate', label: 'Дата рождения', type: 'date', value: '' },
 		{ name: 'gender', label: 'Пол', type: 'radio', value: '', options: ['М', 'Ж'] },
 		{ name: 'maritalStatus', label: 'Семейное положение', type: 'radio', value: '', options: ['Не женат/Не замужем', 'Женат/Замужем', 'В разводе'] },
@@ -23,7 +23,7 @@ export const PROFILE_SECTIONS: Record<string, ProfileField[]> = {
 		{ name: 'education', label: 'Образование', type: 'text', value: '' },
 		{ name: 'englishLevel', label: 'Уровень английского', type: 'select', value: '', options: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] },
 		{ name: 'learningGoal', label: 'Цель обучения', type: 'select', value: '', options: ['Для работы', 'Для путешествий', 'Для себя', 'Для экзамена'] },
-		{ name: 'dailyGoal', label: 'Цель в день (слов)', type: 'number', value: 10 },
+		{ name: 'dailyGoal', label: 'Цель в день (слов)', type: 'number', value: '' },
 	],
 	Предпочтения: [
 		{ name: 'interests', label: 'Интересы', type: 'checkbox', value: [], options: ['IT', 'Музыка', 'Спорт', 'Кино', 'Книги'] },

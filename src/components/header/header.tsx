@@ -54,17 +54,17 @@ export const Header = ({
         {isAuth ? (
           <div className={styles.user}>
             <span>{login}</span>
-            <Button variant="tab" onClick={handleLogout}>
-              ВЫЙТИ
+            <Button variant="action" onClick={handleLogout}>
+              Выйти
             </Button>
           </div>
         ) : (
           <Button
-            variant="tab"
+            variant="action"
             className={pathname === ROUTES.LOGIN ? styles.active : ''}
             onClick={() => navigate(ROUTES.LOGIN)}
           >
-            ВОЙТИ
+            Войти
           </Button>
         )}
       </nav>

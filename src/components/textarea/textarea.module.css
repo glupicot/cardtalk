@@ -1,41 +1,43 @@
 .textarea {
-    width: 100%;
-    min-height: 80px;
-    padding: 10px 12px;
-    font-family: var(--font-family-main);
-    font-size: var(--font-size-s);
-    color: var(--color-black);
-    background: var(--color-white);
-    border: 1px solid var(--color-gray);
-    border-radius: var(--radius-s);
-    resize: vertical;
-    transition: border-color 0.15s;
+	width: 100%;
+	min-height: 100px;
+	padding: 10px 12px;
+	background: var(--color-white);
+	border: 1px solid var(--color-gray);
+	border-radius: var(--field-radius);
+	font-family: var(--font-family-main);
+	font-size: var(--font-size-s);
+	color: var(--color-black);
+	resize: vertical;
+	transition: border-color 0.15s;
 }
 
 .textarea::placeholder {
-    color: var(--color-gray);
+	color: var(--color-gray);
+}
+
+.textarea:hover {
+	border-color: var(--color-indigo);
 }
 
 .textarea:focus {
-    outline: none;
-    border-color: var(--color-indigo);
+	outline: none;
+	border-color: var(--color-indigo);
+}
+
+.textarea:active {
+	border-color: var(--color-indigo-dark);
 }
 
 .textarea:disabled {
-    background: var(--color-gray-light);
-    color: var(--color-gray);
-    cursor: not-allowed;
-}
-
-.error {
-    border-color: var(--color-red);
-}
-.disabled {
 	background: var(--color-gray-light);
 	color: var(--color-gray);
 	cursor: not-allowed;
 }
 
-.disabled:hover {
-	border-color: var(--color-gray);
+.error,
+.error:hover,
+.error:focus {
+	border-color: var(--color-red);
+	color: var(--color-red);
 }

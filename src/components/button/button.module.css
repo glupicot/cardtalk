@@ -3,15 +3,17 @@
 	border: none;
 	background: none;
 	font-family: inherit;
-	transition: background 0.15s, color 0.15s;
+	transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .big {
 	width: 100%;
-	padding: 12px;
+	height: var(--field-height);
+	padding: 0 16px;
 	background: var(--color-indigo);
 	color: var(--color-white);
-	border-radius: var(--radius-s);
+	border-radius: var(--field-radius);
+	font-family: var(--font-family-main);
 	font-size: var(--font-size-m);
 }
 
@@ -20,14 +22,26 @@
 }
 
 .tab {
-	padding: 0;
-	font-family: var(--font-family-accent);
-	font-size: var(--font-size-s);
-	line-height: 1;
-	color: var(--color-indigo);
+	position: relative;
+	padding: 8px 0;
+	font-family: var(--font-family-main);
+	font-size: var(--font-size-m);
+	color: var(--color-gray);
+	transition: color 0.15s;
 }
+
 .tab:hover {
-	color: var(--color-indigo);
+	color: var(--color-black);
+}
+
+.tab:hover::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 2px;
+	background: var(--color-indigo);
 }
 
 .action {
@@ -35,16 +49,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 40px;
+	height: var(--field-height);
 	padding: 0 16px;
-	font-size: var(--font-size-xs);
+	font-family: var(--font-family-main);
+	font-size: var(--font-size-m);
 	font-weight: 600;
 	color: var(--color-indigo);
 	background: transparent;
 	border: 1px solid var(--color-indigo);
-	border-radius: var(--radius-s);
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	border-radius: var(--field-radius);
 }
 
 .action:hover {

@@ -41,7 +41,7 @@ const LoginPage = () => {
     <div className={styles.wrapper}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h1 className={styles.title}>CardTalk</h1>
-        <p className={styles.subtitle}>Войдите, чтобы продолжить обучение</p>
+        <p className={styles.subtitle}>Войдите в аккаунт, чтобы получить персонализированную подборку карточек </p>
 
         <div className={styles.fields}>
           <Input

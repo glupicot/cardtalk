@@ -1,8 +1,21 @@
 import { http, HttpResponse } from 'msw';
 import { ADMIN_LOGIN, ADMIN_PASSWORD } from '../constants/auth';
 import { PROFILE_FIELDS } from '../constants/profile';
+import { WORDS } from '../constants/words';
+import type { ProfileField } from '../types';
 
 const ACCESS_COOKIE = 'access_token';
+const PROFILE_STORAGE_KEY = 'mock_profile';
+
+const getStoredProfile = (): ProfileField[] => {
+	const raw = localStorage.getItem(PROFILE_STORAGE_KEY);
+	if (!raw) return PROFILE_FIELDS;
+	try {
+		return JSON.parse(raw) as ProfileField[];
+	} catch {
+		return PROFILE_FIELDS;
+	}
+};
 
 export const handlers = [
 	http.post('/api/authorization', async ({ request }) => {
@@ -56,15 +69,22 @@ export const handlers = [
 		if (cookies[ACCESS_COOKIE] !== 'access') {
 			return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
 		}
-		return HttpResponse.json(PROFILE_FIELDS);
+		return HttpResponse.json(getStoredProfile());
 	}),
 
 	http.put('/api/profile', async ({ request, cookies }) => {
 		if (cookies[ACCESS_COOKIE] !== 'access') {
 			return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
 		}
-		const body = (await request.json()) as { fields: unknown };
-		console.log('Сохранение профиля:', body);
+		const body = (await request.json()) as { fields: ProfileField[] };
+		localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(body.fields));
 		return HttpResponse.json({ ok: true });
+	}),
+
+	http.get('/api/words', ({ cookies }) => {
+		if (cookies[ACCESS_COOKIE] !== 'access') {
+			return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
+		}
+		return HttpResponse.json(WORDS);
 	}),
 ];

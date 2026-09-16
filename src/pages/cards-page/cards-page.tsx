@@ -1,10 +1,16 @@
-import { CardList } from '../../components/card-list/card-list'
+import { Navigate } from 'react-router-dom';
+import { CardList } from '../../components/card-list/card-list';
+import { useAppSelector } from '../../store/hooks';
+import { useGetWordsQuery } from '../../api/words-api';
 
-import { useAppSelector } from "../../store/hooks";
 const CardsPage = () => {
-  const words = useAppSelector((s) => s.words)
+	const isAuth = useAppSelector((s) => s.user.isAuth);
+	const { data: words = [], isLoading } = useGetWordsQuery();
 
-  return <CardList words={words} />
-}
+	if (!isAuth) return <Navigate to="/login" />;
+	if (isLoading) return <div>Загрузка...</div>;
 
-export default CardsPage 
+	return <CardList words={words} />;
+};
+
+export default CardsPage;

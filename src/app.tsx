@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { store } from './store';
@@ -8,10 +8,7 @@ import { useGetMeQuery } from './api/auth-api';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Body } from './components/body/body';
-import HomePage from './pages/home-page/home-page';
-import LoginPage from './pages/login-page/login-page';
-import CardsPage from './pages/cards-page/cards-page';
-import ProfilePage from './pages/profile-page/profile-page';
+import { HomePage, LoginPage, CardsPage, ProfilePage } from './pages';
 import { ROUTES } from './constants/routes';
 
 const AppContent = () => {
@@ -36,12 +33,14 @@ const AppContent = () => {
 				]}
 			/>
 			<Body>
-				<Routes>
-					<Route path={ROUTES.HOME} element={<HomePage />} />
-					<Route path={ROUTES.LOGIN} element={<LoginPage />} />
-					<Route path={ROUTES.CARDS} element={<CardsPage />} />
-					<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
-				</Routes>
+				<Suspense fallback={<div>Загружаемся, уже скоро, ну почти...</div>}>
+					<Routes>
+						<Route path={ROUTES.HOME} element={<HomePage />} />
+						<Route path={ROUTES.LOGIN} element={<LoginPage />} />
+						<Route path={ROUTES.CARDS} element={<CardsPage />} />
+						<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+					</Routes>
+				</Suspense>
 			</Body>
 			<Footer contacts={{ email: 'mail@cardtalk.ru', phone: '+7 999 123-45-67' }} />
 		</>

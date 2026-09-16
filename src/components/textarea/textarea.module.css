@@ -17,16 +17,16 @@
 }
 
 .textarea:hover {
-	border-color: var(--color-indigo);
+	border-color: var(--color-blue);
 }
 
 .textarea:focus {
 	outline: none;
-	border-color: var(--color-indigo);
+	border-color: var(--color-blue);
 }
 
 .textarea:active {
-	border-color: var(--color-indigo-dark);
+	border-color: var(--color-blue-dark);
 }
 
 .textarea:disabled {

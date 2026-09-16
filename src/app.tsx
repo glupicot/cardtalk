@@ -26,12 +26,7 @@ const AppContent = () => {
 
 	return (
 		<>
-			<Header
-				tabs={[
-					{ id: 'cards', label: 'Карточки', to: ROUTES.CARDS },
-					{ id: 'profile', label: 'Профиль', to: ROUTES.PROFILE },
-				]}
-			/>
+			<Header />
 			<Body>
 				<Suspense fallback={<div>Загружаемся, уже скоро, ну почти...</div>}>
 					<Routes>
@@ -42,7 +37,7 @@ const AppContent = () => {
 					</Routes>
 				</Suspense>
 			</Body>
-			<Footer contacts={{ email: 'mail@cardtalk.ru', phone: '+7 999 123-45-67' }} />
+			<Footer />
 		</>
 	);
 };

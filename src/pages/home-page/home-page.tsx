@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/button/button';
 import { Card } from '../../components/card/card';
-import { WORDS } from '../../constants/words';
+import { WORDS } from '../../mocks/data/words';
 import { ROUTES } from '../../constants/routes';
 import styles from './home-page.module.css';
 
@@ -21,7 +21,11 @@ const HomePage = () => {
 					переворачиваешь, вспоминаешь перевод, забываешь, память-то девичья,
 					переворачиваешь обратно и идёшь дальше. Смол степс, биг дрим, как говорится.
 				</p>
-				<Button variant="big" className={styles.homeButton}onClick={() => navigate(ROUTES.LOGIN)}>
+				<Button
+					variant="big"
+					className={styles.homeButton}
+					onClick={() => navigate(ROUTES.LOGIN)}
+				>
 					Войти на портал
 				</Button>
 			</div>

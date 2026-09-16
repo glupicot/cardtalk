@@ -16,16 +16,16 @@
 }
 
 .input:hover {
-	border-color: var(--color-indigo);
+	border-color: var(--color-blue);
 }
 
 .input:focus {
 	outline: none;
-	border-color: var(--color-indigo);
+	border-color: var(--color-blue);
 }
 
 .input:active {
-	border-color: var(--color-indigo-dark);
+	border-color: var(--color-blue-dark);
 }
 
 .input:disabled {

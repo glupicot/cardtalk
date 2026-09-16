@@ -20,21 +20,20 @@ export const Card = ({ word }: Props) => {
 					<span className={styles.title}>{title}</span>
 					<p className={styles.word}>{word.word}</p>
 					<p className={styles.pos}>{word.partOfSpeech}</p>
-					<p className={styles.example}>{word.example}</p>
-					<Button variant="action" onClick={() => setFlipped(true)}>
+					<p className={styles.example}>"{word.example}"</p>
+					<Button variant="big" onClick={() => setFlipped(true)}>
 						Узнать перевод
 					</Button>
 				</div>
 
 				<div className={styles.back}>
 					<div className={styles.circle} />
-					<span className={styles.title}>{title}</span>
 					<div className={styles.pair}>
 						<span className={styles.word}>{word.word}</span>
 						<span className={styles.equals}>=</span>
 						<span className={styles.translation}>{word.translation}</span>
 					</div>
-					<Button variant="action" onClick={() => setFlipped(false)}>
+					<Button variant="big" onClick={() => setFlipped(false)}>
 						Перевернуть обратно
 					</Button>
 				</div>

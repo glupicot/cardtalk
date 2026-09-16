@@ -1,6 +1,6 @@
 .card {
 	width: 396px;
-	height: 342px;
+	height: 320px;
 	perspective: 1000px;
 }
 
@@ -22,11 +22,11 @@
 	inset: 0;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	padding: 56px 36px 36px;
 	border-radius: 24px;
 	backface-visibility: hidden;
 	box-shadow: var(--shadow-m);
-	padding: 56px 36px 24px;
+	border: 1px solid var(--color-gray);
 
 }
 
@@ -36,19 +36,10 @@
 }
 
 .back {
-	background: var(--color-indigo);
+	background: var(--color-blue);
 	color: var(--color-white);
 	transform: rotateY(180deg);
-}
-
-.back button {
-	border-color: var(--color-white);
-	color: var(--color-white);
-}
-
-.back button:hover {
-	background: var(--color-white);
-	color: var(--color-indigo);
+	padding: 36px;
 }
 
 .circle {
@@ -57,37 +48,45 @@
 	left: 16px;
 	width: 16px;
 	height: 16px;
-	background: var(--color-white);
+	background: var(--color-gray-light);
 	border: 1px solid var(--color-gray);
 	border-radius: 50%;
 }
 
-.back .circle {
-	border-color: var(--color-white);
-}
-
 .title {
-	font-size: var(--font-size-xs);
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	color: var(--color-gray);
-}
-
-.back .title {
-	color: var(--color-gray);
+	font-family: var(--font-family-main);
+	font-size: var(--font-size-m);
+	color: var(--color-black);
 }
 
 .word {
+	margin-top: 8px;
 	font-family: var(--font-family-accent);
-	font-size: var(--font-size-xl);
+	font-size: 36px;
+	line-height: 1.1;
 	color: var(--color-black);
+}
+
+.word {
+	margin-top: 8px;
+	font-family: var(--font-family-accent);
+	font-size: 36px;
+	line-height: 1.1;
+	color: var(--color-black);
+}
+
+.front .word {
+	text-align: left;
 }
 
 .back .word {
 	color: var(--color-white);
+	text-align: center;
+
 }
 
 .pos {
+	margin-top: 8px;
 	font-size: var(--font-size-s);
 	font-style: italic;
 	color: var(--color-gray-dark);
@@ -98,31 +97,50 @@
 }
 
 .example {
+	margin-top: 24px;
 	font-size: var(--font-size-s);
-	font-style: italic;
 	color: var(--color-gray-dark);
 }
 
-.back .example {
-	color: var(--color-gray);
+.front>button,
+.back>button {
+	margin-top: auto;
 }
 
+.back button {
+	background: var(--color-white);
+	color: var(--color-blue);
+	border: none;
+}
+
+.back button:hover {
+	background: var(--color-blue);
+	color: var(--color-white);
+	border: 1px solid var(--color-white);
+}
 .pair {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 8px;
-	flex: 1;
 	justify-content: center;
+	gap: 10px;
+	flex: 1;
+}
+
+.equals,
+.translation {
+	text-align: center;
 }
 
 .equals {
+	font-family: var(--font-family-accent);
 	font-size: var(--font-size-l);
 	color: var(--color-white);
 }
 
 .translation {
 	font-family: var(--font-family-accent);
-	font-size: var(--font-size-l);
+	font-size: 28px;
+	line-height: 1.1;
 	color: var(--color-white);
 }

@@ -19,7 +19,7 @@
 .option input {
 	width: 16px;
 	height: 16px;
-	accent-color: var(--color-indigo);
+	accent-color: var(--color-blue);
 	cursor: pointer;
 }
 

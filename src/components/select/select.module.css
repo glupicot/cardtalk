@@ -17,12 +17,12 @@
 }
 
 .trigger:hover {
-	border-color: var(--color-indigo);
+	border-color: var(--color-blue);
 }
 
 .open,
 .trigger:active {
-	border-color: var(--color-indigo-dark);
+	border-color: var(--color-blue-dark);
 }
 
 .disabled {
@@ -78,7 +78,7 @@
 
 .selected {
 	background: var(--color-gray-light);
-	color: var(--color-indigo);
+	color: var(--color-blue);
 	font-weight: 500;
 }
 .disabled {

@@ -1,40 +1,31 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '../button/button';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logout } from '../../store/slices/user-slice';
 import { setProfile } from '../../store/slices/profile-slice';
 import { useLogoutMutation } from '../../store/slices/auth-api';
+import { LogoMiniIcon } from '../icons/logo-mini-icon';
 import { ROUTES } from '../../constants/routes';
 import styles from './header.module.css';
-
-interface ITab {
-	id: string;
-	label: string;
-	to: string;
-}
 
 interface IHeaderProps {
 	logo?: string;
 	logoTo?: string;
-	tabs: ITab[];
 }
 
-export const Header = ({
-	logo = 'CardTalk',
-	logoTo = ROUTES.HOME,
-	tabs,
-}: IHeaderProps) => {
+export const Header = ({ logo = 'CardTalk', logoTo = ROUTES.HOME }: IHeaderProps) => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const dispatch = useAppDispatch();
 	const isAuth = useAppSelector((s) => s.user.isAuth);
-	const login = useAppSelector((s) => s.user.login);
 	const [logoutRequest] = useLogoutMutation();
 
 	const handleLogout = async () => {
 		try {
 			await logoutRequest().unwrap();
 		} catch {
+			// ignore
 		} finally {
 			dispatch(logout());
 			dispatch(setProfile([]));
@@ -43,38 +34,35 @@ export const Header = ({
 	};
 
 	return (
-		<header className={styles.wrapper}>
+		<header className={styles.header}>
 			<Link to={logoTo} className={styles.logo}>
-				{logo}
+				<LogoMiniIcon />
+				<span>{logo}</span>
 			</Link>
 
-			<nav className={styles.tabs}>
-				{isAuth && (
-					<span className={styles.greeting}>Ready to grind, {login}</span>
-				)}
-				{tabs.map((tab) => (
-					<Button
-						key={tab.id}
-						variant="tab"
-						className={pathname === tab.to ? styles.active : ''}
-						onClick={() => navigate(tab.to)}
-					>
-						{tab.label}
-					</Button>
-				))}
-
+			<nav className={styles.nav}>
 				{isAuth ? (
-					<div className={styles.user}>
+					<>
+						<Button
+							variant="tab"
+							className={pathname === ROUTES.CARDS ? styles.active : ''}
+							onClick={() => navigate(ROUTES.CARDS)}
+						>
+							Карточки
+						</Button>
+						<Button
+							variant="tab"
+							className={pathname === ROUTES.PROFILE ? styles.active : ''}
+							onClick={() => navigate(ROUTES.PROFILE)}
+						>
+							Профиль
+						</Button>
 						<Button variant="action" onClick={handleLogout}>
 							Выйти
 						</Button>
-					</div>
+					</>
 				) : (
-					<Button
-						variant="action"
-						className={pathname === ROUTES.LOGIN ? styles.active : ''}
-						onClick={() => navigate(ROUTES.LOGIN)}
-					>
+					<Button variant="action" onClick={() => navigate(ROUTES.LOGIN)}>
 						Войти
 					</Button>
 				)}

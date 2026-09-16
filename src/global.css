@@ -7,8 +7,8 @@
 }
 
 @font-face {
-	font-family: 'Unbounded';
-	src: url('./assets/fonts/Unbounded.woff2') format('woff2');
+	font-family: 'Fraunces';
+	src: url('./assets/fonts/fraunces-latin-full-normal.woff2') format('truetype');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -17,16 +17,17 @@
 :root {
 	--color-white: #ffffff;
 	--color-black: #1a1a1a;
-	--color-gray-light: #fafafa;
-	--color-gray: #9ca3af;
-	--color-gray-dark: #4b5563;
-	--color-indigo: #4f46e5;
-	--color-indigo-dark: #4338ca;
+	--color-gray-light: #EFF2F8;
+	--color-gray: #C0D4F2;
+	--color-gray-dark: #474F54;
+	--color-blue: #1B5FDC;
+	--color-blue-dark: #0D49B7;
+	--color-blue-darkest: #093B98;
 	--color-red: #e53935;
 	--color-green: #16a34a;
 
 	--font-family-main: 'Inter', system-ui, sans-serif;
-	--font-family-accent: 'Unbounded', system-ui, sans-serif;
+	--font-family-accent: 'Fraunces', system-ui, sans-serif;
 
 	--font-size-xs: 12px;
 	--font-size-s: 14px;
@@ -41,7 +42,8 @@
 	--shadow-s: 0 1px 2px rgba(0, 0, 0, 0.05);
 	--shadow-m: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-	--field-height: 40px;
+	--field-height: 48px;
+	--field-height-small: 40px;
 	--field-radius: var(--radius-l);
 	--field-padding: 0 12px;
 	--field-width: 336px;

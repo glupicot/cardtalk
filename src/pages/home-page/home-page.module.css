@@ -28,13 +28,16 @@
 
 .titleAccent {
 	font-style: italic;
-	color: var(--color-indigo);
+	color: var(--color-blue);
 }
 
 .text {
 	font-size: var(--font-size-m);
 	color: var(--color-gray-dark);
 	line-height: 1.5;
+	max-width: 494px;
+	
+
 }
 
 .right {
@@ -58,4 +61,8 @@
 	bottom: 40px;
 	right: 0;
 	transform: rotate(6deg);
+}
+.homeButton {
+	width: 100%;
+	max-width: 180px;
 }

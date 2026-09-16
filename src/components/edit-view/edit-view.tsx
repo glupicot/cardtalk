@@ -1,28 +1,32 @@
+import type { Control, FieldErrors, UseFormRegister, UseFormWatch } from 'react-hook-form';
 import type { ProfileField } from '../../types/profile';
+import type { ProfileFormData } from '../../schemas/profile-schema';
 import { Field } from '../field/field';
 import { Button } from '../button/button';
 import { PROFILE_SECTIONS } from '../../constants/sections';
 import styles from './edit-view.module.css';
 
 interface Props {
-	fields: ProfileField[];
-	onChange: (name: string, value: ProfileField['value']) => void;
+	register: UseFormRegister<ProfileFormData>;
+	control: Control<ProfileFormData>;
+	errors: FieldErrors<ProfileFormData>;
+	watch: UseFormWatch<ProfileFormData>;
 	onSave: () => void;
 }
 
-const isVisible = (field: ProfileField, allFields: ProfileField[]): boolean => {
+const isVisible = (field: ProfileField, values: ProfileFormData): boolean => {
 	if (!field.visibleWhen) return true;
-	const other = allFields.find((f) => f.name === field.visibleWhen!.field);
-	return other?.value === field.visibleWhen.value;
+	return values[field.visibleWhen.field as keyof ProfileFormData] === field.visibleWhen.value;
 };
 
-const isDisabled = (field: ProfileField, allFields: ProfileField[]): boolean => {
+const isDisabled = (field: ProfileField, values: ProfileFormData): boolean => {
 	if (!field.disabledWhen) return false;
-	const other = allFields.find((f) => f.name === field.disabledWhen!.field);
-	return other?.value === field.disabledWhen.value;
+	return values[field.disabledWhen.field as keyof ProfileFormData] === field.disabledWhen.value;
 };
 
-export const EditView = ({ fields, onChange, onSave }: Props) => {
+export const EditView = ({ register, control, errors, watch, onSave }: Props) => {
+	const values = watch();
+
 	return (
 		<form
 			className={styles.form}
@@ -36,14 +40,15 @@ export const EditView = ({ fields, onChange, onSave }: Props) => {
 					<h2 className={styles.sectionTitle}>{section.title}</h2>
 					<div className={styles.sectionGrid}>
 						{section.fields
-							.map((field) => fields.find((f) => f.name === field.name) ?? field)
-							.filter((field) => isVisible(field, fields))
+							.filter((field) => isVisible(field, values))
 							.map((field) => (
 								<Field
 									key={field.name}
 									field={field}
-									disabled={isDisabled(field, fields)}
-									onChange={onChange}
+									register={register}
+									control={control}
+									errors={errors}
+									disabled={isDisabled(field, values)}
 								/>
 							))}
 					</div>

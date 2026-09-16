@@ -11,4 +11,8 @@
 	font-weight: 500;
 }
 
-
+.error {
+	font-size: var(--font-size-xs);
+	color: var(--color-red);
+	margin-top: 4px;
+}

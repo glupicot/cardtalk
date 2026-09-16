@@ -1,12 +1,7 @@
-import {
-	configureStore,
-	createListenerMiddleware,
-	isAnyOf,
-} from '@reduxjs/toolkit';
+import { configureStore, createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit';
 import { api, publicApi } from './slices/api';
 import { authApi } from './slices/auth-api';
 import userReducer, { logout } from './slices/user-slice';
-import profileReducer, { clearProfile } from './slices/profile-slice';
 
 const sessionListener = createListenerMiddleware();
 
@@ -15,7 +10,6 @@ sessionListener.startListening({
 	effect: (_action, listenerApi) => {
 		listenerApi.dispatch(api.util.resetApiState());
 		listenerApi.dispatch(publicApi.util.resetApiState());
-		listenerApi.dispatch(clearProfile());
 	},
 });
 
@@ -24,7 +18,6 @@ export const store = configureStore({
 		[api.reducerPath]: api.reducer,
 		[publicApi.reducerPath]: publicApi.reducer,
 		user: userReducer,
-		profile: profileReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware()

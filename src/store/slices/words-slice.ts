@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { Word } from '../../types'
-import { WORDS } from '../../data/words'
+import { WORDS } from '../../constants/words'
 
 const initialState: Word[] = WORDS
 

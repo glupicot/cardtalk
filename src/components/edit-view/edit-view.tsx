@@ -31,11 +31,11 @@ export const EditView = ({ fields, onChange, onSave }: Props) => {
 				onSave();
 			}}
 		>
-			{Object.entries(PROFILE_SECTIONS).map(([title, sectionFields]) => (
-				<section key={title} className={styles.section}>
-					<h2 className={styles.sectionTitle}>{title}</h2>
+			{PROFILE_SECTIONS.map((section) => (
+				<section key={section.id} className={styles.section}>
+					<h2 className={styles.sectionTitle}>{section.title}</h2>
 					<div className={styles.sectionGrid}>
-						{sectionFields
+						{section.fields
 							.map((field) => fields.find((f) => f.name === field.name) ?? field)
 							.filter((field) => isVisible(field, fields))
 							.map((field) => (
@@ -50,7 +50,7 @@ export const EditView = ({ fields, onChange, onSave }: Props) => {
 				</section>
 			))}
 
-			<Button key="save" variant="big" className={styles.button} type="submit">
+			<Button variant="big" className={styles.button} type="submit">
 				Сохранить
 			</Button>
 		</form>

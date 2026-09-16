@@ -28,8 +28,8 @@ const ProfilePage = () => {
 	useEffect(() => {
 		if (!isSuccess || !data) return;
 
-		const merged: ProfileField[] = Object.values(PROFILE_SECTIONS)
-			.flat()
+		const merged: ProfileField[] = PROFILE_SECTIONS
+			.flatMap((section) => section.fields)
 			.map((field) => ({
 				...field,
 				value: data[field.name] ?? field.value,

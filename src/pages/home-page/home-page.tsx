@@ -1,9 +1,28 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/button/button';
 import { Card } from '../../components/card/card';
-import { WORDS } from '../../mocks/data/words';
 import { ROUTES } from '../../constants/routes';
+import type { Word } from '../../types/word';
 import styles from './home-page.module.css';
+
+const PREVIEW_WORDS: Word[] = [
+	{
+		id: 'benevolent',
+		word: 'benevolent',
+		partOfSpeech: 'adjective',
+		example: 'a benevolent smile',
+		translation: 'доброжелательный',
+		topics: ['basics'],
+	},
+	{
+		id: 'curious',
+		word: 'curious',
+		partOfSpeech: 'adjective',
+		example: 'a curious mind',
+		translation: 'любопытный',
+		topics: ['basics'],
+	},
+];
 
 const HomePage = () => {
 	const navigate = useNavigate();
@@ -32,10 +51,10 @@ const HomePage = () => {
 
 			<div className={styles.right}>
 				<div className={`${styles.cardWrapper} ${styles.cardLeft}`}>
-					<Card word={WORDS[0]} />
+					<Card word={PREVIEW_WORDS[0]} />
 				</div>
 				<div className={`${styles.cardWrapper} ${styles.cardRight}`}>
-					<Card word={WORDS[1]} />
+					<Card word={PREVIEW_WORDS[1]} />
 				</div>
 			</div>
 		</div>

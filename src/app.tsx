@@ -8,6 +8,7 @@ import { useGetMeQuery } from './store/slices/auth-api';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Body } from './components/body/body';
+import { GuestOnly } from './components/guest-only/guest-only';
 import { HomePage, LoginPage, CardsPage, ProfilePage } from './pages';
 import { ROUTES } from './constants/routes';
 
@@ -30,7 +31,14 @@ const AppContent = () => {
 			<Body>
 				<Suspense fallback={<div>Загружаемся, уже скоро, ну почти...</div>}>
 					<Routes>
-						<Route path={ROUTES.HOME} element={<HomePage />} />
+						<Route
+							path={ROUTES.HOME}
+							element={
+								<GuestOnly>
+									<HomePage />
+								</GuestOnly>
+							}
+						/>
 						<Route path={ROUTES.LOGIN} element={<LoginPage />} />
 						<Route path={ROUTES.CARDS} element={<CardsPage />} />
 						<Route path={ROUTES.PROFILE} element={<ProfilePage />} />

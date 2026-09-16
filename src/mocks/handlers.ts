@@ -69,4 +69,10 @@ export const handlers = [
 		}
 		return HttpResponse.json(WORDS);
 	}),
+	http.get('/api/me', () => {
+		if (readCookie(ACCESS_COOKIE) !== 'access') {
+			return HttpResponse.json({ message: 'Unauthorized' }, { status: 401 });
+		}
+		return HttpResponse.json({ name: 'Admin' });
+	}),
 ];

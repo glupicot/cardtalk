@@ -8,7 +8,7 @@ import { ROUTES } from '../../constants/routes';
 
 const CardsPage = () => {
 	const login = useAppSelector((s) => s.user.login);
-	const { data: words = [], isLoading } = useGetWordsQuery();
+	const { data: words = [], isLoading } = useGetWordsQuery(undefined, { skip: !login });
 	const [selectedTopic, setSelectedTopic] = useState('');
 
 	const topics = useMemo(() => {

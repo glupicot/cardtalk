@@ -27,7 +27,7 @@ const ProfilePage = () => {
 	const navigate = useNavigate();
 	const [toast, setToast] = useState<IToast | null>(null);
 
-	const { data, isSuccess, isLoading } = useGetProfileQuery();
+	const { data, isSuccess, isLoading } = useGetProfileQuery(undefined, { skip: !login });
 	const [saveProfile] = useSaveProfileMutation();
 
 	const {

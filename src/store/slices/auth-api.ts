@@ -27,7 +27,11 @@ export const authApi = api.injectEndpoints({
 			extraOptions: { skipReauth: true },
 			invalidatesTags: ['User', 'Profile', 'Words'],
 		}),
+		getMe: builder.query<LoginResponse, void>({
+			query: () => '/me',
+			providesTags: ['User'],
+		}),
 	}),
 });
 
-export const { useLoginMutation, useLogoutMutation } = authApi;
+export const { useLoginMutation, useLogoutMutation, useGetMeQuery } = authApi;

@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateFields, setProfile } from '../../store/slices/profile-slice';
 import { setUser } from '../../store/slices/user-slice';
 import { useGetProfileQuery, useSaveProfileMutation } from '../../store/slices/profile-api';
-import { PROFILE_FIELDS } from '../../mocks/data/profile';
 import { ROUTES } from '../../constants/routes';
 import type { ProfileField } from '../../types';
 
@@ -40,7 +39,7 @@ const ProfilePage = () => {
 
 		const updated = fields.map((f) => (f.name === name ? { ...f, value } : f));
 
-		PROFILE_FIELDS.forEach((field) => {
+		fields.forEach((field) => {
 			if (field.disabledWhen?.field === name) {
 				const other = updated.find((f) => f.name === name);
 				const shouldDisable = other?.value === field.disabledWhen.value;

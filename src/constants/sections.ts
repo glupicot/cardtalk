@@ -32,5 +32,3 @@ export const PROFILE_SECTIONS: Record<string, ProfileField[]> = {
 		{ name: 'notes', label: 'Заметки', type: 'textarea', value: '' },
 	],
 };
-
-export const PROFILE_FIELDS: ProfileField[] = Object.values(PROFILE_SECTIONS).flat();

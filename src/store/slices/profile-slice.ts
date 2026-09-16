@@ -1,8 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { ProfileField } from '../../types';
-import { PROFILE_FIELDS } from '../../constants/sections';
 
-const initialState: ProfileField[] = PROFILE_FIELDS;
+const initialState: ProfileField[] = [];
 
 const profileSlice = createSlice({
 	name: 'profile',

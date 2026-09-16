@@ -1,7 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {
+	configureStore,
+	createListenerMiddleware,
+	isAnyOf,
+} from '@reduxjs/toolkit';
 import { api, publicApi } from './slices/api';
-import userReducer from './slices/user-slice';
-import profileReducer from './slices/profile-slice';
+import { authPublicApi } from './slices/auth-api';
+import userReducer, { logout } from './slices/user-slice';
+import profileReducer, { clearProfile } from './slices/profile-slice';
+
+const sessionListener = createListenerMiddleware();
+
+sessionListener.startListening({
+	matcher: isAnyOf(logout, authPublicApi.endpoints.logout.matchFulfilled),
+	effect: (_action, listenerApi) => {
+		listenerApi.dispatch(api.util.resetApiState());
+		listenerApi.dispatch(publicApi.util.resetApiState());
+		listenerApi.dispatch(clearProfile());
+	},
+});
 
 export const store = configureStore({
 	reducer: {
@@ -11,7 +27,9 @@ export const store = configureStore({
 		profile: profileReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat(api.middleware, publicApi.middleware),
+		getDefaultMiddleware()
+			.prepend(sessionListener.middleware)
+			.concat(api.middleware, publicApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

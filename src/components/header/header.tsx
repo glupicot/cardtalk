@@ -2,9 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../button/button';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logout } from '../../store/slices/user-slice';
-import { setProfile } from '../../store/slices/profile-slice';
 import { useLogoutMutation } from '../../store/slices/auth-api';
-import { api } from '../../store/slices/api';
 import { LogoMiniIcon } from '../icons/logo-mini-icon';
 import { ROUTES } from '../../constants/routes';
 import styles from './header.module.css';
@@ -27,8 +25,6 @@ export const Header = () => {
 		} catch {
 		} finally {
 			dispatch(logout());
-			dispatch(setProfile([]));
-			dispatch(api.util.resetApiState());
 			navigate(ROUTES.HOME);
 		}
 	};

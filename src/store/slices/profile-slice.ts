@@ -26,8 +26,11 @@ const profileSlice = createSlice({
 		setProfile(_state, action: PayloadAction<ProfileField[]>) {
 			return action.payload;
 		},
+		clearProfile() {
+			return [];
+		},
 	},
 });
 
-export const { updateField, updateFields, setProfile } = profileSlice.actions;
+export const { updateField, updateFields, setProfile, clearProfile } = profileSlice.actions;
 export default profileSlice.reducer;

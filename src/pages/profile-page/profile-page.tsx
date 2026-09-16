@@ -5,7 +5,7 @@ import { Toast } from '../../components/toast/toast';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateFields, setProfile } from '../../store/slices/profile-slice';
 import { setUser } from '../../store/slices/user-slice';
-import { useGetProfileQuery, useSaveProfileMutation } from '../../api/profile-api';
+import { useGetProfileQuery, useSaveProfileMutation } from '../../store/slices/profile-api';
 import { PROFILE_FIELDS } from '../../constants/profile';
 import { ROUTES } from '../../constants/routes';
 import type { ProfileField } from '../../types';

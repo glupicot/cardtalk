@@ -5,7 +5,7 @@ import type {
 	FetchArgs,
 	FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
-import { logout } from '../store/slices/user-slice';
+import { logout } from '../slices/user-slice';
 
 export const baseQuery = fetchBaseQuery({
 	baseUrl: '/api',

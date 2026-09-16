@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/input/input';
 import { Button } from '../../components/button/button';
-import { useLoginMutation } from '../../api/auth-api';
+import { useLoginMutation } from '../../store/slices/auth-api';
 import { useAppDispatch } from '../../store/hooks';
 import { setUser } from '../../store/slices/user-slice';
 import { ROUTES } from '../../constants/routes';

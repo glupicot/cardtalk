@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { store } from './store';
 import { useAppDispatch } from './store/hooks';
 import { setUser, logout } from './store/slices/user-slice';
-import { useGetMeQuery } from './api/auth-api';
+import { useGetMeQuery } from './store/slices/auth-api';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Body } from './components/body/body';

@@ -2,8 +2,8 @@ import { useState, useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
 import { CardList } from '../../components/card-list/card-list';
 import { TopicFilter } from '../../components/topic-filter/topic-filter';
-import { useGetMeQuery } from '../../api/auth-api';
-import { useGetWordsQuery } from '../../api/words-api';
+import { useGetMeQuery } from '../../store/slices/auth-api';
+import { useGetWordsQuery } from '../../store/slices/words-api';
 
 const CardsPage = () => {
 	const { isLoading: isMeLoading, isError: isMeError } = useGetMeQuery();

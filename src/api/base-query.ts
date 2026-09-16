@@ -2,7 +2,7 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query';
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 export const baseQuery = fetchBaseQuery({
-	baseUrl: 'http://localhost:3000/api',
+	baseUrl: '/api',
 	credentials: 'include',
 });
 

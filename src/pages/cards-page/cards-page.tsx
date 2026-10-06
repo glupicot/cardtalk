@@ -18,10 +18,7 @@ const CardsPage = () => {
 	}, [words]);
 
 	const filtered = useMemo(
-		() =>
-			selectedTopic === ''
-				? words
-				: words.filter((w) => w.topics.includes(selectedTopic)),
+		() => (selectedTopic === '' ? words : words.filter((w) => w.topics.includes(selectedTopic))),
 		[words, selectedTopic]
 	);
 
@@ -30,11 +27,7 @@ const CardsPage = () => {
 
 	return (
 		<>
-			<TopicFilter
-				topics={topics}
-				selected={selectedTopic}
-				onSelect={setSelectedTopic}
-			/>
+			<TopicFilter topics={topics} selected={selectedTopic} onSelect={setSelectedTopic} />
 			<CardList words={filtered} />
 		</>
 	);

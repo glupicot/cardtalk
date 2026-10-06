@@ -10,9 +10,7 @@ export const profileSchema = z.object({
 		.refine((v) => v === '' || Number(v) <= 120, 'Возраст до 120 лет'),
 	birthDate: z.string(),
 	city: z.string(),
-	phone: z
-		.string()
-		.refine((v) => v === '' || /^\+?[\d\s()-]+$/.test(v), 'Некорректный телефон'),
+	phone: z.string().refine((v) => v === '' || /^\+?[\d\s()-]+$/.test(v), 'Некорректный телефон'),
 	email: z.string().email('Некорректный email').or(z.literal('')),
 	website: z.string().url('Некорректный URL').or(z.literal('')),
 	job: z.string(),

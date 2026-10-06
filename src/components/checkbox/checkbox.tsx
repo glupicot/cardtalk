@@ -7,7 +7,8 @@ interface Props {
 	onChange: (value: string[]) => void;
 	disabled?: boolean;
 }
-export const Checkbox = ({ name, options, value, onChange, disabled = false }: Props) => {	const handleToggle = (option: string) => {
+export const Checkbox = ({ name, options, value, onChange, disabled = false }: Props) => {
+	const handleToggle = (option: string) => {
 		if (value.includes(option)) {
 			onChange(value.filter((v) => v !== option));
 		} else {
@@ -25,7 +26,7 @@ export const Checkbox = ({ name, options, value, onChange, disabled = false }: P
 						value={option}
 						checked={value.includes(option)}
 						onChange={() => handleToggle(option)}
-                        disabled={disabled}
+						disabled={disabled}
 					/>
 					<span>{option}</span>
 				</label>

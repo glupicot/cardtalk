@@ -45,12 +45,6 @@ export interface RadioField extends BaseField {
 }
 
 export type ProfileField =
-	| TextField
-	| NumberField
-	| TextareaField
-	| DateField
-	| SelectField
-	| CheckboxField
-	| RadioField;
+	TextField | NumberField | TextareaField | DateField | SelectField | CheckboxField | RadioField;
 
 export type ProfileValues = Record<string, string | string[]>;

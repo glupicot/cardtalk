@@ -14,18 +14,11 @@ export const baseQuery = fetchBaseQuery({
 
 let refreshRequest: Promise<boolean> | null = null;
 
-const refreshSession = async (
-	api: BaseQueryApi,
-	extraOptions: object,
-): Promise<boolean> => {
+const refreshSession = async (api: BaseQueryApi, extraOptions: object): Promise<boolean> => {
 	if (refreshRequest) return refreshRequest;
 
 	const request = (async () => {
-		const result = await baseQuery(
-			{ url: '/refresh', method: 'POST' },
-			api,
-			extraOptions,
-		);
+		const result = await baseQuery({ url: '/refresh', method: 'POST' }, api, extraOptions);
 		return !result.error;
 	})();
 

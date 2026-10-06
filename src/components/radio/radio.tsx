@@ -19,7 +19,7 @@ export const Radio = ({ name, options, value, onChange, disabled = false }: Prop
 						value={option}
 						checked={value === option}
 						onChange={() => onChange(option)}
-                        disabled={disabled}
+						disabled={disabled}
 					/>
 					<span>{option}</span>
 				</label>

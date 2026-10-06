@@ -15,7 +15,10 @@
 	font-size: var(--font-size-s);
 	color: var(--color-gray-dark);
 	cursor: pointer;
-	transition: background 0.15s, color 0.15s, border-color 0.15s;
+	transition:
+		background 0.15s,
+		color 0.15s,
+		border-color 0.15s;
 }
 
 .tab:hover {

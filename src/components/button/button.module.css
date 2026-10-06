@@ -3,7 +3,10 @@
 	border: none;
 	background: none;
 	font-family: inherit;
-	transition: background 0.15s, color 0.15s, border-color 0.15s;
+	transition:
+		background 0.15s,
+		color 0.15s,
+		border-color 0.15s;
 }
 
 .big {
@@ -32,7 +35,6 @@
 .tab:hover {
 	color: var(--color-black);
 }
-
 
 .action {
 	width: 100%;

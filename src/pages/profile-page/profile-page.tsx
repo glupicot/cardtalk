@@ -17,9 +17,7 @@ interface IToast {
 }
 
 const defaultValues: ProfileFormData = Object.fromEntries(
-	PROFILE_SECTIONS
-		.flatMap((section) => section.fields)
-		.map((field) => [field.name, field.value])
+	PROFILE_SECTIONS.flatMap((section) => section.fields).map((field) => [field.name, field.value])
 ) as ProfileFormData;
 
 const ProfilePage = () => {
@@ -76,13 +74,7 @@ const ProfilePage = () => {
 				watch={watch}
 				onSave={handleSubmit(onSubmit)}
 			/>
-			{toast && (
-				<Toast
-					message={toast.message}
-					type={toast.type}
-					onClose={() => setToast(null)}
-				/>
-			)}
+			{toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 		</>
 	);
 };

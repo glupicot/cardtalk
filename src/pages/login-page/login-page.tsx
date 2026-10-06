@@ -45,11 +45,7 @@ const LoginPage = () => {
 				</p>
 
 				<div className={styles.fields}>
-					<Input
-						placeholder="Логин"
-						hasError={!!errors.login}
-						{...register('login')}
-					/>
+					<Input placeholder="Логин" hasError={!!errors.login} {...register('login')} />
 
 					<Input
 						type="password"
@@ -60,9 +56,7 @@ const LoginPage = () => {
 				</div>
 
 				{(errors.login || errors.password) && (
-					<p className={styles.error}>
-						{errors.login?.message || errors.password?.message}
-					</p>
+					<p className={styles.error}>{errors.login?.message || errors.password?.message}</p>
 				)}
 
 				<Button variant="big" type="submit" disabled={isLoading}>

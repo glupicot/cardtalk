@@ -13,7 +13,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
 				ref={ref}
 				className={clsx(styles.textarea, hasError && styles.error, className)}
 				{...props}
-
 			/>
 		);
 	}

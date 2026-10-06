@@ -1,8 +1,4 @@
-import {
-	configureStore,
-	createListenerMiddleware,
-	isAnyOf,
-} from '@reduxjs/toolkit';
+import { configureStore, createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit';
 import { api } from './slices/api';
 import { authApi } from './slices/auth-api';
 import userReducer, { logout } from './slices/user-slice';
@@ -22,9 +18,7 @@ export const store = configureStore({
 		user: userReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware()
-			.prepend(sessionListener.middleware)
-			.concat(api.middleware),
+		getDefaultMiddleware().prepend(sessionListener.middleware).concat(api.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

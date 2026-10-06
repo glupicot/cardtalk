@@ -1,4 +1,5 @@
 import { forwardRef, type InputHTMLAttributes } from 'react'
+import clsx from 'clsx';
 import styles from './input.module.css'
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -10,7 +11,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
     return (
       <input
         ref={ref}
-        className={`${styles.input} ${hasError ? styles.error : ''} ${className}`}
+        className={clsx(styles.input, hasError && styles.error, className)}
         {...props}
       />
     )

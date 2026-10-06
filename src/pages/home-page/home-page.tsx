@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/button/button';
 import { Card } from '../../components/card/card';
@@ -54,10 +55,10 @@ const HomePage = () => {
 			</div>
 
 			<div className={styles.right}>
-				<div className={`${styles.cardWrapper} ${styles.cardLeft}`}>
+				<div className={clsx(styles.cardWrapper, styles.cardLeft)}>
 					<Card word={PREVIEW_WORDS[0]} />
 				</div>
-				<div className={`${styles.cardWrapper} ${styles.cardRight}`}>
+				<div className={clsx(styles.cardWrapper, styles.cardRight)}>
 					<Card word={PREVIEW_WORDS[1]} />
 				</div>
 			</div>

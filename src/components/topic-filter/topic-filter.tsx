@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import styles from './topic-filter.module.css';
 
 interface Props {
@@ -10,7 +11,7 @@ export const TopicFilter = ({ topics, selected, onSelect }: Props) => {
 	return (
 		<div className={styles.filter}>
 			<button
-				className={`${styles.tab} ${selected === '' ? styles.active : ''}`}
+				className={clsx(styles.tab, selected === '' && styles.active)}
 				onClick={() => onSelect('')}
 			>
 				Все
@@ -18,7 +19,7 @@ export const TopicFilter = ({ topics, selected, onSelect }: Props) => {
 			{topics.map((topic) => (
 				<button
 					key={topic}
-					className={`${styles.tab} ${selected === topic ? styles.active : ''}`}
+					className={clsx(styles.tab, selected === topic && styles.active)}
 					onClick={() => onSelect(topic)}
 				>
 					{topic}

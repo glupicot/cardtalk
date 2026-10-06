@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import clsx from 'clsx';
 import styles from './button.module.css'
 
 type ButtonVariant = 'action' | 'tab' | 'big'
@@ -16,7 +17,7 @@ export const Button = ({
 }: Props) => {
   return (
     <button
-      className={`${styles.button} ${styles[variant]} ${className}`}
+      className={clsx(styles.button, styles[variant], className)}
       {...props}
     >
       {children}

@@ -1,4 +1,5 @@
 import { forwardRef, type TextareaHTMLAttributes } from 'react';
+import clsx from 'clsx';
 import styles from './textarea.module.css';
 
 interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -10,9 +11,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
 		return (
 			<textarea
 				ref={ref}
-				className={`${styles.textarea} ${hasError ? styles.error : ''} ${className}`}
+				className={clsx(styles.textarea, hasError && styles.error, className)}
 				{...props}
-                
+
 			/>
 		);
 	}

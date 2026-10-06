@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import clsx from 'clsx';
 import styles from './toast.module.css';
 
 interface Props {
@@ -13,5 +14,5 @@ export const Toast = ({ message, type = 'success', onClose }: Props) => {
 		return () => clearTimeout(timer);
 	}, [onClose]);
 
-	return <div className={`${styles.toast} ${styles[type]}`}>{message}</div>;
+	return <div className={clsx(styles.toast, styles[type])}>{message}</div>;
 };

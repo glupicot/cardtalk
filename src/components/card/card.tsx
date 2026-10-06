@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import clsx from 'clsx';
 import type { Word } from '../../types/word';
 import { getRandomTitle } from '../../utils/titles-utils';
 import { Button } from '../button/button';
@@ -13,7 +14,7 @@ export const Card = ({ word }: Props) => {
 	const [title] = useState(() => getRandomTitle());
 
 	return (
-		<div className={`${styles.card} ${flipped ? styles.flipped : ''}`}>
+		<div className={clsx(styles.card, flipped && styles.flipped)}>
 			<div className={styles.inner}>
 				<div className={styles.front}>
 					<div className={styles.circle} />

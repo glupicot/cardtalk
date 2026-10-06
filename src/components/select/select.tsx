@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import clsx from 'clsx';
 import { createPortal } from 'react-dom';
 import styles from './select.module.css';
 
@@ -91,13 +92,13 @@ export const Select = ({
 		<>
 			<div
 				ref={triggerRef}
-				className={`${styles.trigger} ${isOpen ? styles.open : ''} ${disabled ? styles.disabled : ''}`}
+				className={clsx(styles.trigger, isOpen && styles.open, disabled && styles.disabled)}
 				onClick={toggleDropdown}
 			>
 				<span className={selected ? styles.value : styles.placeholder}>
 					{selected ? selected.label : placeholder}
 				</span>
-				<span className={`${styles.arrow} ${isOpen ? styles.rotated : ''}`}>▾</span>
+				<span className={clsx(styles.arrow, isOpen && styles.rotated)}>▾</span>
 			</div>
 
 			{isOpen &&
@@ -117,7 +118,7 @@ export const Select = ({
 						{options.map((option) => (
 							<div
 								key={option.value}
-								className={`${styles.option} ${option.value === value ? styles.selected : ''}`}
+								className={clsx(styles.option, option.value === value && styles.selected)}
 								onClick={() => handleSelect(option)}
 							>
 								{option.label}

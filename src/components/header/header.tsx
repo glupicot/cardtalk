@@ -30,6 +30,8 @@ export const Header = () => {
 		}
 	};
 
+	const isOnLoginPage = pathname === ROUTES.LOGIN;
+
 	return (
 		<header className={styles.header}>
 			<Link to={ROUTES.HOME} className={styles.logo}>
@@ -54,6 +56,10 @@ export const Header = () => {
 							Выйти
 						</Button>
 					</>
+				) : isOnLoginPage ? (
+					<Button variant="action" onClick={() => navigate(ROUTES.HOME)}>
+						На главную
+					</Button>
 				) : (
 					<Button variant="action" onClick={() => navigate(ROUTES.LOGIN)}>
 						Войти

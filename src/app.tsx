@@ -8,6 +8,8 @@ import { useGetMeQuery } from './store/slices/auth-api';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Body } from './components/body/body';
+import { ProtectedRoute } from './components/protected-route/protected-route';
+import { GuestOnly } from './components/guest-only/guest-only';
 import { HomePage } from './pages/home-page';
 import { LoginPage } from './pages/login-page';
 import { CardsPage } from './pages/cards-page';
@@ -35,10 +37,16 @@ const AppContent = () => {
 			<Body>
 				<Suspense fallback={<div>Загружаемся, уже скоро, ну почти...</div>}>
 					<Routes>
-						<Route path={ROUTES.HOME} element={<HomePage />} />
-						<Route path={ROUTES.LOGIN} element={<LoginPage />} />
-						<Route path={ROUTES.CARDS} element={<CardsPage />} />
-						<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+						<Route element={<GuestOnly />}>
+							<Route path={ROUTES.HOME} element={<HomePage />} />
+							<Route path={ROUTES.LOGIN} element={<LoginPage />} />
+						</Route>
+
+						<Route element={<ProtectedRoute />}>
+							<Route path={ROUTES.CARDS} element={<CardsPage />} />
+							<Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+						</Route>
+
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
 				</Suspense>

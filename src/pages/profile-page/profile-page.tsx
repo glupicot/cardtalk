@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EditView } from '../../components/edit-view/edit-view';
 import { Toast } from '../../components/toast/toast';
-import { useAppSelector } from '../../store/hooks';
-import { selectLogin } from '../../store/selectors';
 import { useGetProfileQuery, useSaveProfileMutation } from '../../store/slices/profile-api';
 import { PROFILE_SECTIONS } from '../../constants/sections';
 import { profileSchema, type ProfileFormData } from '../../schemas/profile-schema';
@@ -22,12 +20,11 @@ const defaultValues: ProfileFormData = Object.fromEntries(
 ) as ProfileFormData;
 
 const ProfilePage = () => {
-	const login = useAppSelector(selectLogin);
 	const navigate = useNavigate();
 	const [toast, setToast] = useState<IToast | null>(null);
 	const initializedRef = useRef(false);
 
-	const { data, isSuccess, isLoading } = useGetProfileQuery(undefined, { skip: !login });
+	const { data, isSuccess, isLoading } = useGetProfileQuery();
 	const [saveProfile] = useSaveProfileMutation();
 
 	const {
@@ -50,7 +47,6 @@ const ProfilePage = () => {
 		}
 	}, [isSuccess, data, reset]);
 
-	if (!login) return <Navigate to={ROUTES.HOME} />;
 	if (isLoading) return <div className="loader">Загрузка профиля...</div>;
 
 	const onSubmit = async (values: ProfileFormData) => {

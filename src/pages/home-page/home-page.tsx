@@ -1,9 +1,7 @@
 import clsx from 'clsx';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/button/button';
 import { Card } from '../../components/card/card';
-import { useAppSelector } from '../../store/hooks';
-import { selectLogin } from '../../store/selectors';
 import { ROUTES } from '../../constants/routes';
 import type { Word } from '../../types/word';
 import styles from './home-page.module.css';
@@ -29,9 +27,6 @@ const PREVIEW_WORDS: Word[] = [
 
 const HomePage = () => {
 	const navigate = useNavigate();
-	const login = useAppSelector(selectLogin);
-
-	if (login) return <Navigate to={ROUTES.CARDS} replace />;
 
 	return (
 		<div className={styles.home}>

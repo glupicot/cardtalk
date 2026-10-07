@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../button/button';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { selectLogin } from '../../store/selectors';
 import { logout } from '../../store/slices/user-slice';
 import { useLogoutMutation } from '../../store/slices/auth-api';
 import { LogoMiniIcon } from '../icons/logo-mini-icon';
@@ -16,7 +17,7 @@ export const Header = () => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const dispatch = useAppDispatch();
-	const login = useAppSelector((s) => s.user.login);
+	const login = useAppSelector(selectLogin);
 	const [logoutRequest] = useLogoutMutation();
 
 	const handleLogout = async () => {

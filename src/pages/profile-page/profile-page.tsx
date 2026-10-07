@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { EditView } from '../../components/edit-view/edit-view';
 import { Toast } from '../../components/toast/toast';
 import { useAppSelector } from '../../store/hooks';
+import { selectLogin } from '../../store/selectors';
 import { useGetProfileQuery, useSaveProfileMutation } from '../../store/slices/profile-api';
 import { PROFILE_SECTIONS } from '../../constants/sections';
 import { profileSchema, type ProfileFormData } from '../../schemas/profile-schema';
@@ -21,7 +22,7 @@ const defaultValues: ProfileFormData = Object.fromEntries(
 ) as ProfileFormData;
 
 const ProfilePage = () => {
-	const login = useAppSelector((s) => s.user.login);
+	const login = useAppSelector(selectLogin);
 	const navigate = useNavigate();
 	const [toast, setToast] = useState<IToast | null>(null);
 	const initializedRef = useRef(false);

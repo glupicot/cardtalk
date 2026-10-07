@@ -3,14 +3,14 @@ import { Navigate } from 'react-router-dom';
 import { CardList } from '../../components/card-list/card-list';
 import { TopicFilter } from '../../components/topic-filter/topic-filter';
 import { useAppSelector } from '../../store/hooks';
+import { selectLogin } from '../../store/selectors';
 import { useGetWordsQuery } from '../../store/slices/words-api';
 import { ROUTES } from '../../constants/routes';
 
 const CardsPage = () => {
-	const login = useAppSelector((s) => s.user.login);
+	const login = useAppSelector(selectLogin);
 	const { data: words = [], isLoading } = useGetWordsQuery(undefined, { skip: !login });
 	const [selectedTopic, setSelectedTopic] = useState('');
-
 	const topics = useMemo(() => {
 		const set = new Set<string>();
 		words.forEach((w) => w.topics.forEach((t) => set.add(t)));
